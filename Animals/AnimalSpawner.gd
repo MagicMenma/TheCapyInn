@@ -12,6 +12,9 @@ var timer: Timer
 var stopSpawning = false
 
 func _ready():
+	# 对局开始前的等待时间
+	await get_tree().create_timer(3).timeout
+	
 	# 1. 创建并配置计时器
 	timer = Timer.new()
 	add_child(timer)

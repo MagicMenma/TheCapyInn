@@ -35,8 +35,8 @@ func _check_and_toggle_noren():
 		noren.modulate.a = 0 # 初始透明
 		noren.position.y = -50 # 初始位置稍高
 		var tween = create_tween().set_parallel(true)
-		tween.tween_property(noren, "modulate:a", 1.0, 0.5)
-		tween.tween_property(noren, "position:y", 0.0, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_property(noren, "modulate:a", 1.0, 1)
+		tween.tween_property(noren, "position:y", 0.0, 2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	else:
 		noren.visible = false
 		print("检测到宽屏/网页比例，暖帘已隐藏")
