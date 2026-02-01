@@ -17,6 +17,7 @@ modulate_color = Color(0.69965345, 0.69965345, 0.69965345, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mte74"]
 texture = ExtResource("10_dwlst")
+axis_stretch_vertical = 2
 modulate_color = Color(0.69965345, 0.69965345, 0.69965345, 1)
 
 [node name="Board" type="Control" unique_id=677469318]
@@ -105,11 +106,11 @@ autostart = true
 
 [node name="Noren" type="Panel" parent="." unique_id=1973488014]
 clip_contents = true
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(720, 160)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 120.0
+offset_bottom = 160.0
 grow_horizontal = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_mte74")
