@@ -9,9 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://o27oxm01rcwb" path="res://Animals/AnimalSpawner.tscn" id="7_ppong"]
 [ext_resource type="PackedScene" uid="uid://b681wblh574ft" path="res://Scripts/GameOverArea.tscn" id="8_7f1ut"]
 [ext_resource type="PackedScene" uid="uid://cihlanfwqllx6" path="res://Scripts/GameOverInterface.tscn" id="8_vidin"]
+[ext_resource type="Texture2D" uid="uid://bv5dyffkf1lt5" path="res://Texture/Noren.png" id="10_dwlst"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m0gry"]
 texture = ExtResource("1_y0vwi")
+modulate_color = Color(0.69965345, 0.69965345, 0.69965345, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mte74"]
+texture = ExtResource("10_dwlst")
 modulate_color = Color(0.69965345, 0.69965345, 0.69965345, 1)
 
 [node name="Board" type="Control" unique_id=677469318]
@@ -97,6 +102,16 @@ mouse_filter = 1
 [node name="DifficultyTimer" type="Timer" parent="." unique_id=107129534]
 wait_time = 5.0
 autostart = true
+
+[node name="Noren" type="Panel" parent="." unique_id=1973488014]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -973.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_mte74")
 
 [connection signal="overflow_occurred" from="MainCanvas/GameOverArea" to="." method="_on_game_over_area_overflow_occurred"]
 [connection signal="timeout" from="DifficultyTimer" to="MainCanvas/AnimalSpawner" method="_on_difficulty_timer_timeout"]
