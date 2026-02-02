@@ -45,10 +45,12 @@ func full_match(animal2):
 				var tween = create_tween()
 				tween.tween_property(item, "scale", Vector2.ZERO, 0.2)
 				tween.finished.connect(item.queue_free) 
+			
+			current_selection.clear()
 		else:
 			clear_selection()
+			current_selection.clear()
 			animal2.selected() # 只保留最后一个动物
-		current_selection.clear()
 
 
 # 待使用
