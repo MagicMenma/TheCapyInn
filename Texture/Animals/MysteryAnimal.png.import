@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cap7vja4bajsc"
-path="res://.godot/imported/AnimalSpawner.png-681f3ec67b016002e8186aa1306b205f.ctex"
+uid="uid://bcf1gixtuioa0"
+path="res://.godot/imported/MysteryAnimal.png-e04936e2dd3057cd88dfe3e941242386.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texture/AnimalSpawner.png"
-dest_files=["res://.godot/imported/AnimalSpawner.png-681f3ec67b016002e8186aa1306b205f.ctex"]
+source_file="res://Texture/Animals/MysteryAnimal.png"
+dest_files=["res://.godot/imported/MysteryAnimal.png-e04936e2dd3057cd88dfe3e941242386.ctex"]
 
 [params]
 

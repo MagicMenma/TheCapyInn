@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b3uev2yj08fd3" path="res://Scripts/GameOverInterface.gd" id="1_j46me"]
 [ext_resource type="Texture2D" uid="uid://cn44co8jo10wh" path="res://Texture/GameOverBG.png" id="2_j46me"]
 [ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="2_wo486"]
-[ext_resource type="Texture2D" uid="uid://bcf1gixtuioa0" path="res://Texture/MysteryAnimal.png" id="4_dfdi5"]
+[ext_resource type="Texture2D" uid="uid://bcf1gixtuioa0" path="res://Texture/Animals/MysteryAnimal.png" id="4_dfdi5"]
 [ext_resource type="Texture2D" uid="uid://05wc08deteg2" path="res://Texture/ProgressBar/Under.png" id="5_tpdr6"]
 [ext_resource type="Texture2D" uid="uid://dem4sxj1ykela" path="res://Texture/ProgressBar/Over.png" id="5_yhjgs"]
 [ext_resource type="Texture2D" uid="uid://di3n2srwuope1" path="res://Texture/ProgressBar/Progress.png" id="6_tpdr6"]

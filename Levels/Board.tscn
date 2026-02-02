@@ -4,11 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://cvfibty0q0xay" path="res://Texture/theArtofWebcraft.png" id="1_y0vwi"]
 [ext_resource type="PackedScene" uid="uid://cccss10al4gie" path="res://Scripts/Platform.tscn" id="4_lwha7"]
 [ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="4_vidin"]
-[ext_resource type="PackedScene" uid="uid://be3qw6jhtryjk" path="res://Animals/Capybara.tscn" id="5_lwha7"]
-[ext_resource type="PackedScene" uid="uid://cos13cipdy1vs" path="res://Animals/Rabbit.tscn" id="6_lwha7"]
+[ext_resource type="PackedScene" uid="uid://be3qw6jhtryjk" path="res://Animals/Capybara_Bathing.tscn" id="5_lwha7"]
+[ext_resource type="PackedScene" uid="uid://cos13cipdy1vs" path="res://Animals/Rabbit_Bathing.tscn" id="6_lwha7"]
 [ext_resource type="PackedScene" uid="uid://o27oxm01rcwb" path="res://Animals/AnimalSpawner.tscn" id="7_ppong"]
 [ext_resource type="PackedScene" uid="uid://b681wblh574ft" path="res://Scripts/GameOverArea.tscn" id="8_7f1ut"]
 [ext_resource type="PackedScene" uid="uid://cihlanfwqllx6" path="res://Scripts/GameOverInterface.tscn" id="8_vidin"]
+[ext_resource type="PackedScene" uid="uid://er8awv7q8l4v" path="res://Animals/Bear_Bathing.tscn" id="9_mte74"]
 [ext_resource type="Texture2D" uid="uid://bv5dyffkf1lt5" path="res://Texture/Noren.png" id="10_dwlst"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m0gry"]
@@ -83,7 +84,7 @@ position = Vector2(-340, -859)
 
 [node name="AnimalSpawner" parent="MainCanvas" unique_id=6480400 instance=ExtResource("7_ppong")]
 position = Vector2(22, -582)
-animal_scenes = Array[PackedScene]([ExtResource("5_lwha7"), ExtResource("6_lwha7")])
+animal_scenes = Array[PackedScene]([ExtResource("5_lwha7"), ExtResource("6_lwha7"), ExtResource("9_mte74")])
 min_interval = 0.15
 
 [node name="GameOverInterface" parent="MainCanvas" unique_id=146784199 instance=ExtResource("8_vidin")]

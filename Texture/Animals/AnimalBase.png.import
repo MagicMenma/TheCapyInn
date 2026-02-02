@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcf1gixtuioa0"
-path="res://.godot/imported/MysteryAnimal.png-fc28d905b063198fc34696297b1917ea.ctex"
+uid="uid://3n6f8taiqbqq"
+path="res://.godot/imported/AnimalBase.png-fd02c0a05b61954c116966fe59bfdebc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texture/MysteryAnimal.png"
-dest_files=["res://.godot/imported/MysteryAnimal.png-fc28d905b063198fc34696297b1917ea.ctex"]
+source_file="res://Texture/Animals/AnimalBase.png"
+dest_files=["res://.godot/imported/AnimalBase.png-fd02c0a05b61954c116966fe59bfdebc.ctex"]
 
 [params]
 

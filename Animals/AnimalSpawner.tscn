@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://o27oxm01rcwb"]
 
 [ext_resource type="Script" uid="uid://beoxyrqs864iv" path="res://Animals/AnimalSpawner.gd" id="1_dub1p"]
-[ext_resource type="Texture2D" uid="uid://cap7vja4bajsc" path="res://Texture/AnimalSpawner.png" id="2_4ko2h"]
+[ext_resource type="Texture2D" uid="uid://cap7vja4bajsc" path="res://Texture/Animals/AnimalSpawner.png" id="2_4ko2h"]
 
 [node name="AnimalSpawner" type="Node2D" unique_id=6480400]
 script = ExtResource("1_dub1p")

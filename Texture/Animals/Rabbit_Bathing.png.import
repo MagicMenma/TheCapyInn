@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3n6f8taiqbqq"
-path="res://.godot/imported/AnimalBase.png-e20b49c8438c0d3f6f9f75d75a978f77.ctex"
+uid="uid://cx1j1olw72sq8"
+path="res://.godot/imported/Rabbit_Bathing.png-87dc8dd7307030113fafb0e68365044c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texture/AnimalBase.png"
-dest_files=["res://.godot/imported/AnimalBase.png-e20b49c8438c0d3f6f9f75d75a978f77.ctex"]
+source_file="res://Texture/Animals/Rabbit_Bathing.png"
+dest_files=["res://.godot/imported/Rabbit_Bathing.png-87dc8dd7307030113fafb0e68365044c.ctex"]
 
 [params]
 
