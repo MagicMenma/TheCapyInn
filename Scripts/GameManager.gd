@@ -13,13 +13,12 @@ func add_to_selection(animal):                               #游戏失败后停
 	current_selection.append(animal)
 	
 	if current_selection.size() == 2:
-		if not quick_match():
-			return
+		quick_match(animal)
 	if current_selection.size() == 3:
-		full_match()
+		full_match(animal)
 	
 
-func quick_match() -> bool:
+func quick_match(animal1):
 	var first1 = current_selection[0]
 	var second2 = current_selection[1]
 	
@@ -27,10 +26,11 @@ func quick_match() -> bool:
 		print("类型不匹配，快速清空")
 		clear_selection()
 		current_selection.clear()
-		return false # 返回 false 匹配失败
-	return true # 返回 true 目前两个是一样的
+		
+		animal1.selected() # 只保留最后一个动物
 
-func full_match():
+
+func full_match(animal2):
 	var first = current_selection[0]
 	var second = current_selection[1]
 	var third = current_selection[2]
@@ -47,6 +47,7 @@ func full_match():
 				tween.finished.connect(item.queue_free) 
 		else:
 			clear_selection()
+			animal2.selected() # 只保留最后一个动物
 		current_selection.clear()
 
 

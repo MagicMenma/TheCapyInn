@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://jv1jk6a6gn2s"]
+
+[ext_resource type="Texture2D" uid="uid://cn44co8jo10wh" path="res://Texture/GameOverBG.png" id="2_ba7ug"]
+[ext_resource type="Texture2D" uid="uid://cvfibty0q0xay" path="res://Texture/theArtofWebcraft.png" id="2_opog2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m0gry"]
+texture = ExtResource("2_opog2")
+modulate_color = Color(0.69965345, 0.69965345, 0.69965345, 1)
+
+[node name="GuestLounge" type="Control" unique_id=677469318]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OverrallBackground" type="Panel" parent="." unique_id=1566793151]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m0gry")
+
+[node name="Background" type="Control" parent="." unique_id=80234001]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ground" type="Sprite2D" parent="Background" unique_id=643697850]
+position = Vector2(-340, -520)
+texture = ExtResource("2_ba7ug")
+centered = false

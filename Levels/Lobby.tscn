@@ -103,4 +103,30 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_m0gry")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_m0gry")
 text = "Start Soaking"
 
+[node name="Home" type="Button" parent="." unique_id=462047431]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.23108
+offset_top = 217.0
+offset_right = 157.26892
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
+theme_override_colors/font_focus_color = Color(0.15127617, 0.15127602, 0.15127611, 1)
+theme_override_colors/font_pressed_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
+theme_override_colors/font_hover_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
+theme_override_fonts/font = ExtResource("4_ueq3s")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_8kjbg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nrckh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m0gry")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_m0gry")
+text = "Home"
+
 [connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
