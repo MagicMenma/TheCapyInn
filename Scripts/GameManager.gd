@@ -9,6 +9,16 @@ var daily_stamina: int = 3
 var current_selection = []
 var game_over: bool = false
 
+var unlocked_animals = {
+	"Capybara": {"unlocked": true, "count": 1, "scene": "res://Animals/Capybara.tscn"},
+	"Bear": {"unlocked": true, "count": 2, "scene": "res://Animals/Bear.tscn"},
+	"Rabbit": {"unlocked": true, "count": 3, "scene": "res://Animals/Rabbit.tscn"},
+	"Capybara_Bathing": {"unlocked": true, "count": 1, "scene": "res://Animals/Capybara.tscn"},
+	"Rabbit_Bathing": {"unlocked": true, "count": 3, "scene": "res://Animals/Rabbit.tscn"},
+	"Bear_Bathing": {"unlocked": true, "count": 3, "scene": "res://Animals/Bear.tscn"}
+}
+
+
 func add_to_selection(animal):                               #游戏失败后停止计算合集
 	current_selection.append(animal)
 	

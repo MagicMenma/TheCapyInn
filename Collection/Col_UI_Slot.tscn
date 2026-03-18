@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://rp2bj4e53bxu"]
+
+[ext_resource type="Texture2D" uid="uid://dg4hvmpq1ewwo" path="res://Texture/Animals/Selection.png" id="1_0kbr6"]
+[ext_resource type="Script" uid="uid://bmf13xa6sn3x2" path="res://Collection/col_ui_slot.gd" id="1_kiiym"]
+[ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="2_0jy2h"]
+[ext_resource type="Texture2D" uid="uid://f0l75j0lhav7" path="res://Texture/Animals/Bear.png" id="2_3dc74"]
+
+[node name="Panel" type="TextureButton" unique_id=730846750]
+custom_minimum_size = Vector2(130, 150)
+offset_right = 130.0
+offset_bottom = 150.0
+texture_hover = ExtResource("1_0kbr6")
+ignore_texture_size = true
+script = ExtResource("1_kiiym")
+
+[node name="NameLabel" type="Label" parent="." unique_id=978506876]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_0jy2h")
+theme_override_font_sizes/font_size = 24
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="." unique_id=775826598]
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_3dc74")
+expand_mode = 2
+stretch_mode = 5
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

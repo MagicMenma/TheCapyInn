@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cdqrkqpfuqseb" path="res://Animals/AnimalBase.tscn" id="1_bsmu7"]
 [ext_resource type="Texture2D" uid="uid://dw62hft0lg8vy" path="res://Texture/Animals/Capybara_Bathing.png" id="2_7wm0i"]
-[ext_resource type="Texture2D" uid="uid://dpwrwypjuhrd5" path="res://Texture/Animals/capybara.png" id="2_afa5l"]
+[ext_resource type="Texture2D" uid="uid://dpwrwypjuhrd5" path="res://Texture/Animals/Capybara.png" id="2_afa5l"]
 
 [sub_resource type="Shader" id="Shader_peu82"]
 code = "shader_type canvas_item;

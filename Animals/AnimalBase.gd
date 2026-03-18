@@ -4,12 +4,11 @@ extends RigidBody2D
 @export var animal_type: String = "Capybara" # 用于判断是否可以消除
 @export var score_value: int = 100            # 不同动物的分数
 @export var hover_color: Color = Color.WHITE # 高亮颜色
+@export var state: int = 0                   # 0：默认  1：泡澡中
 @onready var default: Sprite2D = $Default
 @onready var bathing: Sprite2D = $Bathing
 
 var is_selected = false
-# 0：默认  1：泡澡中
-var state: int = 0
 
 func _ready():
 	# 随机水平翻转逻辑

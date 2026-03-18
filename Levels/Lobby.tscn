@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://inmr3xh4l3ae" path="res://Levels/Lobby.gd" id="1_f5k8n"]
 [ext_resource type="Texture2D" uid="uid://cvfibty0q0xay" path="res://Texture/theArtofWebcraft.png" id="2_ueq3s"]
 [ext_resource type="Texture2D" uid="uid://c56xyodkv8tff" path="res://Texture/Lobby.png" id="3_j83j6"]
+[ext_resource type="Texture2D" uid="uid://cn44co8jo10wh" path="res://Texture/GameOverBG.png" id="4_j83j6"]
 [ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="4_ueq3s"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m0gry"]
@@ -72,10 +73,15 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Lobby" type="Sprite2D" parent="Background" unique_id=643697850]
-position = Vector2(-342, -521.00006)
-scale = Vector2(0.9903714, 1.1341721)
+position = Vector2(-340.00003, -519)
+scale = Vector2(0.9903714, 1.1320754)
 texture = ExtResource("3_j83j6")
 centered = false
+
+[node name="GameOverBg" type="Sprite2D" parent="Background" unique_id=2139899060]
+position = Vector2(20, 445)
+scale = Vector2(1, 0.21481481)
+texture = ExtResource("4_j83j6")
 
 [node name="StartGame" type="Button" parent="." unique_id=1834014417]
 layout_mode = 1
@@ -110,10 +116,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -158.23108
-offset_top = 217.0
-offset_right = 157.26892
-offset_bottom = 323.0
+offset_left = -336.0
+offset_top = 363.0
+offset_right = -182.73108
+offset_bottom = 469.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
@@ -127,6 +133,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_8kjbg")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_nrckh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_m0gry")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_m0gry")
-text = "Home"
+text = "Edit"
 
 [connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Home" to="." method="_on_home_pressed"]
