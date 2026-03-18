@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="King Of Animals"
-config/version="0.12"
+config/version="0.13"
 run/main_scene="uid://bajvq4bmj3div"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0.9607843, 0.79607844, 0.83137256, 1)
