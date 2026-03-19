@@ -45,7 +45,7 @@ func _process(_delta):
 		mouse_ghost.global_position = get_global_mouse_position()
 		
 		var touch_pos = get_global_mouse_position()
-		var offset = Vector2(-150, -150) 
+		var offset = Vector2(-75, -150) 
 		mouse_ghost.global_position = touch_pos + offset
 		
 		# 检测碰撞
@@ -79,11 +79,19 @@ func _confirm_placement():
 	# TODO: 这里需要加入合法性检测（比如是否碰撞到墙壁）
 	
 	if is_position_valid():
-		mouse_ghost.modulate.a = 1.0
-		mouse_ghost._is_placed()
-		# 2. 从“手中”销毁引用
+		# 1. 获取当前预览的位置
+		var final_position = mouse_ghost.global_position
+		# 2. 彻底删除预览 (Ghost)
+		mouse_ghost.free()
 		mouse_ghost = null
-		# 3. 扣除库存
+		# 3. 实例化一个全新的“实体”动物
+		# 这里使用 GameManager 存储的当前选中的场景资源
+		var new_animal = GameManager.placing_scene.instantiate()
+		# 4. 设置属性
+		new_animal.global_position = final_position
+		# 5. 添加到场景树
+		add_child(new_animal)
+		# 6. 更新库存并结束放置模式
 		GameManager.unlocked_animals[GameManager.current_placing_animal_id]["count"] -= 1
 	
 

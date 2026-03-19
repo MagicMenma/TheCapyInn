@@ -8,17 +8,9 @@ extends TextureButton
 @onready var img: Sprite2D = $img
 @onready var area_2d: Area2D = $Area2D
 
-var is_ready_to_pick: bool = false
-
 func _ready():
 	_filp()
 	
-	is_ready_to_pick = false
-	# 延迟0.5 秒，等玩家的手指抬起后，再开启“可拿起”状态
-	await get_tree().create_timer(1).timeout
-	is_ready_to_pick = true
-	
-
 func _filp():
 	# 随机等待 2 到 5 秒
 	var wait_time = randf_range(flip_speed, flip_speed * 2)
@@ -64,7 +56,5 @@ func _on_mouse_exited():
 
 
 func _on_pressed() -> void:
-	if not is_ready_to_pick: 
-		return
-	GameManager.start_placement_mode(animal_type)
-	queue_free()
+	GameManager.start_placement_mode(animal_type) # 新生成鼠标跟随对象
+	queue_free() # 删除放置的对象
