@@ -4,8 +4,7 @@ extends RigidBody2D
 @export var animal_type: String = "Capybara" # 用于判断是否可以消除
 @export var score_value: int = 100            # 不同动物的分数
 @export var hover_color: Color = Color.WHITE # 高亮颜色
-@export var state: int = 0                   # 0：默认  1：泡澡中
-@onready var default: Sprite2D = $Default
+
 @onready var bathing: Sprite2D = $Bathing
 
 var is_selected = false
@@ -15,8 +14,6 @@ func _ready():
 	if randf() > 0.5:
 		bathing.flip_h = true
 		$CollisionShape2D.rotation *= -1
-	
-	_set_state_(state)
 
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -36,13 +33,3 @@ func selected():
 func deselected():
 	is_selected = false
 	bathing.material.set_shader_parameter("active", false)
-
-
-func _set_state_(s):
-	match s:
-		0:
-			default.visible = true
-			bathing.visible = false
-		1:
-			default.visible = false
-			bathing.visible = true

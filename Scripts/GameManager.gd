@@ -2,6 +2,7 @@
 extends Node
 
 signal score_changed(new_score) # 定义信号，用于更新 UI
+signal entered_placement_mode
 
 var current_score: int = 0
 var daily_score: int = 0
@@ -9,13 +10,18 @@ var daily_stamina: int = 3
 var current_selection = []
 var game_over: bool = false
 
+# 定义当前要放置的动物 ID
+var current_placing_animal_id: String = ""
+# 预加载该动物的场景资源
+var placing_scene: PackedScene = null
+
 var unlocked_animals = {
-	"Capybara": {"unlocked": true, "count": 1, "scene": "res://Animals/Capybara.tscn"},
-	"Bear": {"unlocked": true, "count": 2, "scene": "res://Animals/Bear.tscn"},
-	"Rabbit": {"unlocked": true, "count": 3, "scene": "res://Animals/Rabbit.tscn"},
-	"Capybara_Bathing": {"unlocked": true, "count": 1, "scene": "res://Animals/Capybara.tscn"},
-	"Rabbit_Bathing": {"unlocked": true, "count": 3, "scene": "res://Animals/Rabbit.tscn"},
-	"Bear_Bathing": {"unlocked": true, "count": 3, "scene": "res://Animals/Bear.tscn"}
+	"Capybara": {"unlocked": true, "count": 1, "scene": "res://Animals/Placable/CapybaraPLB.tscn"},
+	"Bear": {"unlocked": true, "count": 2, "scene": "res://Animals/Placable/BearPLB.tscn"},
+	"Rabbit": {"unlocked": true, "count": 3, "scene": "res://Animals/Placable/RabbitPLB.tscn"},
+	"Capybara_Bathing": {"unlocked": true, "count": 1, "scene": "res://Animals/Placable/CapybaraPLB.tscn"},
+	"Rabbit_Bathing": {"unlocked": true, "count": 3, "scene": "res://Animals/Placable/RabbitPLB.tscn"},
+	"Bear_Bathing": {"unlocked": true, "count": 3, "scene": "res://Animals/Placable/BearPLB.tscn"}
 }
 
 
@@ -62,7 +68,6 @@ func full_match(animal2):
 			current_selection.clear()
 			animal2.selected() # 只保留最后一个动物
 
-
 # 待使用
 func clear_selection():
 	if current_selection.is_empty():
@@ -83,3 +88,11 @@ func clear_score():
 	
 func new_day():
 	daily_score = 0
+
+
+func start_placement_mode(animal_id: String):
+	current_placing_animal_id = animal_id
+	placing_scene = load(unlocked_animals[animal_id]["scene"])
+	
+	# 发出信号，通知主场景生成预览
+	emit_signal("entered_placement_mode")

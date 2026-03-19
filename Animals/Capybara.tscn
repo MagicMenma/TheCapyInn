@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cdqrkqpfuqseb" path="res://Animals/AnimalBase.tscn" id="1_bsmu7"]
 [ext_resource type="Texture2D" uid="uid://dw62hft0lg8vy" path="res://Texture/Animals/Capybara_Bathing.png" id="2_7wm0i"]
-[ext_resource type="Texture2D" uid="uid://dpwrwypjuhrd5" path="res://Texture/Animals/Capybara.png" id="2_afa5l"]
 
 [sub_resource type="Shader" id="Shader_peu82"]
 code = "shader_type canvas_item;
@@ -28,7 +27,7 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7lkm5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fo5rj"]
 resource_local_to_scene = true
 shader = SubResource("Shader_peu82")
 shader_parameter/line_color = Color(1, 1, 1, 1)
@@ -42,16 +41,12 @@ height = 181.85695
 [node name="Capybara" unique_id=1328516180 instance=ExtResource("1_bsmu7")]
 animal_type = "Capybara"
 
-[node name="Default" parent="." index="0" unique_id=1954322614]
-visible = false
-material = SubResource("ShaderMaterial_7lkm5")
-texture = ExtResource("2_afa5l")
-
-[node name="Bathing" parent="." index="1" unique_id=1944208589]
-material = SubResource("ShaderMaterial_7lkm5")
+[node name="Bathing" parent="." index="0" unique_id=1944208589]
+material = SubResource("ShaderMaterial_fo5rj")
 texture = ExtResource("2_7wm0i")
 
-[node name="CollisionShape2D" parent="." index="2" unique_id=886505176]
+[node name="CollisionShape2D" parent="." index="1" unique_id=886505176]
+visible = false
 position = Vector2(-2, 10)
 rotation = 1.480378
 shape = SubResource("CapsuleShape2D_e33e2")

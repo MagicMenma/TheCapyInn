@@ -16,4 +16,4 @@ func display_animal(animal_id: String):
 
 
 func _on_pressed() -> void:
-	get_tree().change_scene_to_file("res://Levels/Lobby.tscn")
+	GameManager.start_placement_mode(name_label.text)

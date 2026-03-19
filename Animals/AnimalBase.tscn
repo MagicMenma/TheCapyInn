@@ -49,11 +49,6 @@ linear_damp = 4.0
 script = ExtResource("1_rsaio")
 animal_type = "AnimalBase"
 
-[node name="Default" type="Sprite2D" parent="." unique_id=1954322614]
-material = SubResource("ShaderMaterial_bsmu7")
-scale = Vector2(0.61641943, 0.6141953)
-texture = ExtResource("2_peu82")
-
 [node name="Bathing" type="Sprite2D" parent="." unique_id=1944208589]
 material = SubResource("ShaderMaterial_bsmu7")
 scale = Vector2(0.61641943, 0.6141953)

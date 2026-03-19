@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://er8awv7q8l4v"]
+[gd_scene format=3 uid="uid://chbfpwt5ahian"]
 
-[ext_resource type="PackedScene" uid="uid://cdqrkqpfuqseb" path="res://Animals/AnimalBase.tscn" id="1_2bdat"]
-[ext_resource type="Texture2D" uid="uid://iu456gffgjer" path="res://Texture/Animals/Bear_Bathing.png" id="2_g3bah"]
+[ext_resource type="PackedScene" uid="uid://6wvfwva6rc8i" path="res://Animals/Placeable/AnimalPLB.tscn" id="1_hycsv"]
+[ext_resource type="Texture2D" uid="uid://dpwrwypjuhrd5" path="res://Texture/Animals/Capybara.png" id="2_wqqmx"]
 
 [sub_resource type="Shader" id="Shader_peu82"]
 code = "shader_type canvas_item;
@@ -27,25 +27,16 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rx6qa"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ldps0"]
 resource_local_to_scene = true
 shader = SubResource("Shader_peu82")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 10.0
 shader_parameter/active = false
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r5goh"]
-radius = 80.0
-height = 226.0
+[node name="AnimalDeco" unique_id=1119426501 instance=ExtResource("1_hycsv")]
+animal_type = "Capybara"
 
-[node name="AnimalBase" unique_id=1328516180 instance=ExtResource("1_2bdat")]
-
-[node name="Bathing" parent="." index="0" unique_id=1944208589]
-material = SubResource("ShaderMaterial_rx6qa")
-texture = ExtResource("2_g3bah")
-
-[node name="CollisionShape2D" parent="." index="1" unique_id=886505176]
-visible = false
-position = Vector2(1, 14)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_r5goh")
+[node name="img" parent="." index="0" unique_id=1954322614]
+material = SubResource("ShaderMaterial_ldps0")
+texture = ExtResource("2_wqqmx")

@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cdqrkqpfuqseb" path="res://Animals/AnimalBase.tscn" id="1_4etow"]
 [ext_resource type="Texture2D" uid="uid://cx1j1olw72sq8" path="res://Texture/Animals/Rabbit_Bathing.png" id="2_jmvtb"]
-[ext_resource type="Texture2D" uid="uid://lmvul6ned8mx" path="res://Texture/Animals/Rabbit.png" id="2_q16nu"]
 
 [sub_resource type="Shader" id="Shader_peu82"]
 code = "shader_type canvas_item;
@@ -28,7 +27,7 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rfcww"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kwd0"]
 resource_local_to_scene = true
 shader = SubResource("Shader_peu82")
 shader_parameter/line_color = Color(1, 1, 1, 1)
@@ -44,16 +43,12 @@ animal_type = "Rabbit"
 score_value = 50
 hover_color = Color(0.9946225, 0.9956867, 0.71373934, 1)
 
-[node name="Default" parent="." index="0" unique_id=1954322614]
-visible = false
-material = SubResource("ShaderMaterial_rfcww")
-texture = ExtResource("2_q16nu")
-
-[node name="Bathing" parent="." index="1" unique_id=1944208589]
-material = SubResource("ShaderMaterial_rfcww")
+[node name="Bathing" parent="." index="0" unique_id=1944208589]
+material = SubResource("ShaderMaterial_2kwd0")
 texture = ExtResource("2_jmvtb")
 
-[node name="CollisionShape2D" parent="." index="2" unique_id=886505176]
+[node name="CollisionShape2D" parent="." index="1" unique_id=886505176]
+visible = false
 position = Vector2(-2.9999998, 17)
 rotation = 1.5598981
 shape = SubResource("CapsuleShape2D_6pe18")
