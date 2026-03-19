@@ -10,6 +10,7 @@ extends TextureButton
 
 func _ready():
 	_filp()
+	add_to_group("animalsPLB")
 	
 func _filp():
 	# 随机等待 2 到 5 秒
@@ -27,12 +28,12 @@ func _hop():
 	var tween = create_tween().set_parallel(true)
 	
 	# 挤压效果
-	tween.tween_property(img, "scale", Vector2(0.4, 0.8), 0.15)
+	tween.tween_property(animal_plb, "scale", Vector2(0.8, 1.2), 0.15)
 	
 	var fall_tween = tween.chain().set_parallel(true)
-	fall_tween.tween_property(img, "scale", Vector2(0.8, 0.4), 0.15)
+	fall_tween.tween_property(animal_plb, "scale", Vector2(1.2, 0.8), 0.15)
 	
-	tween.chain().tween_property(img, "scale", Vector2(0.616, 0.616), 0.1)
+	tween.chain().tween_property(animal_plb, "scale", Vector2.ONE, 0.1)
 
 # 碰撞检测 - 边框颜色
 func _placeable():

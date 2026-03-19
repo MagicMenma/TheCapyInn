@@ -13,3 +13,8 @@ func _process(delta: float) -> void:
 
 func _on_start_game_pressed() -> void:
 	get_tree().change_scene_to_file("res://Levels/Lobby.tscn")
+
+
+func _on_guest_play_pressed() -> void:
+	SaveManager.delete_save_placed_animals()
+	get_tree().change_scene_to_file("res://Levels/Lobby.tscn")

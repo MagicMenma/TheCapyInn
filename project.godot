@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="King Of Animals"
+config/name="The Capy Inn"
 config/version="0.13"
 run/main_scene="uid://bajvq4bmj3div"
 config/features=PackedStringArray("4.6", "GL Compatibility")
@@ -22,6 +22,7 @@ boot_splash/minimum_display_time=1500
 [autoload]
 
 GameManager="*uid://dt5clm78uckci"
+SaveManager="*uid://b3erxrlqjtsls"
 
 [display]
 

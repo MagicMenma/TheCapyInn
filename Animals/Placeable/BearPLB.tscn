@@ -38,7 +38,12 @@ shader_parameter/active = false
 animal_type = "Bear"
 flip_speed = 6
 
-[node name="img" parent="." index="0" unique_id=1954322614]
+[node name="Shadow" parent="." index="0" unique_id=1817663640]
+material = SubResource("ShaderMaterial_nklh4")
+position = Vector2(92.49999, 164)
+scale = Vector2(0.6363636, 0.616)
+
+[node name="img" parent="." index="1" unique_id=1954322614]
 material = SubResource("ShaderMaterial_nklh4")
 texture = ExtResource("2_7mb35")
 

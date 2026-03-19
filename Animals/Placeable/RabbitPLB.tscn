@@ -39,7 +39,12 @@ animal_type = "Rabbit"
 hover_color = Color(0.9999996, 0.99697584, 0.3571294, 1)
 flip_speed = 2
 
-[node name="img" parent="." index="0" unique_id=1954322614]
+[node name="Shadow" parent="." index="0" unique_id=1817663640]
+material = SubResource("ShaderMaterial_44ygf")
+position = Vector2(88.5, 128.00002)
+scale = Vector2(0.36070383, 0.616)
+
+[node name="img" parent="." index="1" unique_id=1954322614]
 material = SubResource("ShaderMaterial_44ygf")
 texture = ExtResource("2_22kl2")
 

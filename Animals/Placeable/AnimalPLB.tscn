@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6wvfwva6rc8i"]
 
 [ext_resource type="Script" uid="uid://cnwvrjk8f82m3" path="res://Animals/Placeable/AnimalPLB.gd" id="1_4o2bp"]
+[ext_resource type="Texture2D" uid="uid://bfp3qicq3kjm1" path="res://Texture/Animals/Shadow.png" id="2_46sgb"]
 [ext_resource type="Texture2D" uid="uid://3n6f8taiqbqq" path="res://Texture/Animals/AnimalBase.png" id="2_xv1nb"]
 
 [sub_resource type="Shader" id="Shader_peu82"]
@@ -41,6 +42,12 @@ offset_bottom = 150.0
 pivot_offset = Vector2(92, 75)
 size_flags_horizontal = 4
 script = ExtResource("1_4o2bp")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1817663640]
+material = SubResource("ShaderMaterial_bsmu7")
+position = Vector2(92, 154)
+scale = Vector2(0.53958946, 0.616)
+texture = ExtResource("2_46sgb")
 
 [node name="img" type="Sprite2D" parent="." unique_id=1954322614]
 material = SubResource("ShaderMaterial_bsmu7")

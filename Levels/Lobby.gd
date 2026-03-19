@@ -5,24 +5,18 @@ extends Control
 @onready var edit: Control = $Edit
 
 
-
 @onready var placement_layer: Control = $PlacementLayer # 用于接收点击
 var mouse_ghost: TextureButton = null # 存储预览实例
 
 
 func _ready() -> void:
+		# 从独立脚本获取数据并生成
+	var saved_animals = SaveManager.load_placed_animals()
+	for data in saved_animals:
+		_spawn_saved_animal(data)
 	
 	GameManager.entered_placement_mode.connect(_on_placement_started)
 
-
-#各个主要功能视图设置
-func _lobby():
-	lobby.visible = true
-	edit.visible = false
-
-func _edit():
-	lobby.visible = false
-	edit.visible = true
 
 func _on_placement_started():
 	# 1. 关闭 CollectionUI
@@ -37,6 +31,17 @@ func _on_placement_started():
 	# 开启放置层的输入接收
 	placement_layer.visible = true
 
+# 从存档生成可放置的动物
+func _spawn_saved_animal(data: Dictionary):
+	var animal_scene = GameManager.get_scene_by_type(data["type"])
+	if animal_scene:
+		var new_animal = animal_scene.instantiate()
+		new_animal.global_position = Vector2(data["pos_x"], data["pos_y"])
+		
+		placement_layer.add_child(new_animal)
+		new_animal.add_to_group("animalsPLB")
+		if lobby.visible:
+			new_animal.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _process(_delta):
 	# 让预览跟随鼠标
@@ -90,9 +95,13 @@ func _confirm_placement():
 		# 4. 设置属性
 		new_animal.global_position = final_position
 		# 5. 添加到场景树
-		add_child(new_animal)
+		placement_layer.add_child(new_animal)
+		new_animal.add_to_group("animalsPLB")
 		# 6. 更新库存并结束放置模式
 		GameManager.unlocked_animals[GameManager.current_placing_animal_id]["count"] -= 1
+		# 调用独立脚本进行保存
+		var all_placed = get_tree().get_nodes_in_group("animalsPLB")
+		SaveManager.save_placed_animals(all_placed)
 	
 
 func _cancel_placement():
@@ -102,6 +111,29 @@ func _cancel_placement():
 	# 重新打开菜单
 	#$CollectionUI.show_menu_smooth()
 
+# 辅助函数：统一控制动物的可点击性
+func _set_animals_interactive(active: bool):
+	# 获取场景中所有属于该组的动物
+	var animals = get_tree().get_nodes_in_group("animalsPLB")
+	for animal in animals:
+		if active:
+			# MOUSE_FILTER_STOP 代表接收并停止点击事件传递
+			animal.mouse_filter = Control.MOUSE_FILTER_STOP 
+		else:
+			# MOUSE_FILTER_IGNORE 代表完全忽略鼠标，点击会穿透到下方
+			animal.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+#各个主要功能视图设置
+func _lobby():
+	lobby.visible = true
+	edit.visible = false
+	_set_animals_interactive(false)
+
+func _edit():
+	lobby.visible = false
+	edit.visible = true
+	_set_animals_interactive(true)
 
 func _on_back_pressed() -> void:
 	_lobby()

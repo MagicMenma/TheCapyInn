@@ -28,14 +28,11 @@ func _spawn_animal():
 	if animal_scenes.size() == 0 || stopSpawning == true:
 		return
 	
-	# 3. 随机选择一种动物
+	# 随机选择一种动物
 	var random_index = randi() % animal_scenes.size()
 	var animal_instance = animal_scenes[random_index].instantiate()
 	
-	# 4. 设置动物状态为“泡澡中”
-	animal_instance.state = 1
-	
-	# 5. 计算随机位置
+	# 计算随机位置
 	var random_x = randf_range(-spawn_width / 2, spawn_width / 2)
 	animal_instance.position = Vector2(random_x, -50) # 这里的坐标是相对于 Spawner 的
 	

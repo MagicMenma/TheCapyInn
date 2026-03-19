@@ -37,7 +37,12 @@ shader_parameter/active = false
 [node name="AnimalDeco" unique_id=1119426501 instance=ExtResource("1_hycsv")]
 animal_type = "Capybara"
 
-[node name="img" parent="." index="0" unique_id=1954322614]
+[node name="Shadow" parent="." index="0" unique_id=1817663640]
+material = SubResource("ShaderMaterial_ldps0")
+position = Vector2(89, 146)
+scale = Vector2(0.5395895, 0.616)
+
+[node name="img" parent="." index="1" unique_id=1954322614]
 material = SubResource("ShaderMaterial_ldps0")
 texture = ExtResource("2_wqqmx")
 

@@ -96,3 +96,12 @@ func start_placement_mode(animal_id: String):
 	
 	# 发出信号，通知主场景生成预览
 	emit_signal("entered_placement_mode")
+
+# 返回动物数据名称 - Lobby.gb
+func get_scene_by_type(type_name: String) -> PackedScene:
+	if unlocked_animals.has(type_name):
+		var scene_path = unlocked_animals[type_name]["scene"]
+		return load(scene_path) as PackedScene
+	else:
+		print("警告：GameManager 找不到类型为 ", type_name, " 的场景！")
+		return null
