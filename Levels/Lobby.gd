@@ -44,6 +44,10 @@ func _process(_delta):
 		# 让预览跟随鼠标
 		mouse_ghost.global_position = get_global_mouse_position()
 		
+		var touch_pos = get_global_mouse_position()
+		var offset = Vector2(-150, -150) 
+		mouse_ghost.global_position = touch_pos + offset
+		
 		# 检测碰撞
 		if is_position_valid():
 			mouse_ghost._placeable()
@@ -63,11 +67,11 @@ func _input(event):
 	if mouse_ghost == null: return
 	
 	# A. 确定放置 (左键)
-	if event.is_action_pressed("mouse_left"):
+	if event.is_action_released("mouse_left"):
 		_confirm_placement()
 		
 	# B. 取消放置 (右键)
-	if event.is_action_pressed("mouse_right"):
+	if event.is_action_released("mouse_right"):
 		_cancel_placement()
 
 

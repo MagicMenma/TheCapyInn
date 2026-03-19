@@ -8,8 +8,16 @@ extends TextureButton
 @onready var img: Sprite2D = $img
 @onready var area_2d: Area2D = $Area2D
 
+var is_ready_to_pick: bool = false
+
 func _ready():
 	_filp()
+	
+	is_ready_to_pick = false
+	# 延迟0.5 秒，等玩家的手指抬起后，再开启“可拿起”状态
+	await get_tree().create_timer(1).timeout
+	is_ready_to_pick = true
+	
 
 func _filp():
 	# 随机等待 2 到 5 秒
@@ -53,3 +61,10 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	create_tween().tween_property(animal_plb, "scale", Vector2.ONE, 0.1)
+
+
+func _on_pressed() -> void:
+	if not is_ready_to_pick: 
+		return
+	GameManager.start_placement_mode(animal_type)
+	queue_free()
