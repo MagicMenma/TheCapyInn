@@ -214,6 +214,29 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ScoreThisRound" type="RichTextLabel" parent="ProgressBar" unique_id=1052691274]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0464286
+anchor_top = -0.88
+anchor_right = 1.3854288
+anchor_bottom = -0.88
+offset_left = -41.25
+offset_top = -33.0
+offset_right = 41.099945
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(240, 16)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_wo486")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "+0"
+fit_content = true
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="ButtonSet/Lobby" to="." method="_on_lobby_pressed"]
 [connection signal="pressed" from="ButtonSet/AdsAgain" to="." method="_on_ads_again_pressed"]
 [connection signal="pressed" from="ButtonSet/PlayAgain" to="." method="_on_play_again_pressed"]

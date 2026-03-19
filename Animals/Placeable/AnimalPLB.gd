@@ -9,6 +9,9 @@ extends TextureButton
 @onready var area_2d: Area2D = $Area2D
 
 func _ready():
+	if randf() > 0.5:
+		img.flip_h = not img.flip_h
+		area_2d.scale.x *= -1
 	_filp()
 	add_to_group("animalsPLB")
 	

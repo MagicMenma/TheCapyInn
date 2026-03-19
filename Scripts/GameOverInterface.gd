@@ -6,14 +6,7 @@ extends Control
 @onready var ads_again: Button = $ButtonSet/AdsAgain
 @onready var play_again: Button = $ButtonSet/PlayAgain
 @onready var button_set: Control = $ButtonSet
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@onready var score_this_round: RichTextLabel = $ProgressBar/ScoreThisRound
 
 
 # 对局结束后总控制器
@@ -28,6 +21,8 @@ func play_score_animation():
 	var start_val = GameManager.daily_score
 	var added_val = GameManager.current_score
 	var end_val = start_val + added_val
+	
+	score_this_round.text = "+ $" + str(added_val)
 	
 	# 先把进度条和文字设为起始状态
 	progress_bar.value = start_val
@@ -57,7 +52,6 @@ func play_score_animation():
 func _update_label_text(current_animated_val: int):
 	var format_string = "$$$ [shake rate=15.0 level=8][color=#69EAFF]%d[/color][/shake] / %d to Unlock\nToday's Mystery Animal"
 	status_label.text = format_string % [current_animated_val, progress_bar.max_value]
-	
 	# 每次数字变动，让整个 Label 稍微放大一点再缩回去
 	var t = create_tween()
 	t.tween_property(status_label, "scale", Vector2(1.3, 1.3), 0.05)

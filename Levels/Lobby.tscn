@@ -6,13 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cn44co8jo10wh" path="res://Texture/GameOverBG.png" id="4_j83j6"]
 [ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="4_ueq3s"]
 [ext_resource type="PackedScene" uid="uid://c7m7vslqutp4u" path="res://Collection/Col_UI.tscn" id="5_1tyf7"]
+[ext_resource type="Texture2D" uid="uid://d756bsfok20l" path="res://Texture/NorenMainPage.png" id="6_r50g8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m0gry"]
 texture = ExtResource("2_ueq3s")
 modulate_color = Color(0.69965345, 0.69965345, 0.69965345, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v81qt"]
-size = Vector2(719, 232)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21xeq"]
 bg_color = Color(5.8377795, 5.8377795, 5.837779, 1)
@@ -114,16 +112,13 @@ texture = ExtResource("4_j83j6")
 centered = false
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1082856169]
+visible = false
 position = Vector2(0, 849)
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1099278698]
-position = Vector2(359.5, 115)
-shape = SubResource("RectangleShape2D_v81qt")
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=941088261]
-polygon = PackedVector2Array(-4, -852, 0, 231, -52, 223, -53, -891, 776, -891, 776, 229, 720, 230, 721, -850)
+polygon = PackedVector2Array(-58, -896, -64, 357, -95, 358, -98, -927, 829, -934, 832, 365, -53, 357, -53, 300, 799, 306, 800, -898)
 
 [node name="PlacementLayer" type="Control" parent="." unique_id=1148065014]
 layout_mode = 1
@@ -161,7 +156,7 @@ layout_mode = 0
 offset_top = 849.0
 offset_right = 720.0
 offset_bottom = 1080.0
-color = Color(0.8332189, 0.72872597, 0.58279824, 1)
+color = Color(0.83, 0.72625, 0.581, 0.50980395)
 
 [node name="StartGame" type="Button" parent="Lobby" unique_id=1699746411]
 layout_mode = 1
@@ -214,6 +209,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jyq2n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pld3d")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_pld3d")
 text = "Edit"
+
+[node name="NorenMainPage" type="Sprite2D" parent="Lobby" unique_id=860329256]
+position = Vector2(359, 100)
+texture = ExtResource("6_r50g8")
 
 [node name="Title" type="Label" parent="Lobby" unique_id=1983058230]
 layout_mode = 1

@@ -3,6 +3,7 @@ extends Control
 @export var CollectionOfPlayer: Collection
 @onready var lobby: Control = $Lobby
 @onready var edit: Control = $Edit
+@onready var collection_ui: Control = $Edit/CollectionUi
 
 
 @onready var placement_layer: Control = $PlacementLayer # 用于接收点击
@@ -20,7 +21,7 @@ func _ready() -> void:
 
 func _on_placement_started():
 	# 1. 关闭 CollectionUI
-	#$CollectionUI.hide_menu_smooth() 
+	collection_ui.hide_menu_smooth()
 	
 	# 2. 生成动物预览
 	mouse_ghost = GameManager.placing_scene.instantiate()
@@ -102,14 +103,16 @@ func _confirm_placement():
 		# 调用独立脚本进行保存
 		var all_placed = get_tree().get_nodes_in_group("animalsPLB")
 		SaveManager.save_placed_animals(all_placed)
+		
+		collection_ui.show_menu_smooth()
 	
 
 func _cancel_placement():
 	if mouse_ghost:
 		mouse_ghost.queue_free()
 		mouse_ghost = null
-	# 重新打开菜单
-	#$CollectionUI.show_menu_smooth()
+	
+	collection_ui.show_menu_smooth()
 
 # 辅助函数：统一控制动物的可点击性
 func _set_animals_interactive(active: bool):
@@ -136,6 +139,9 @@ func _edit():
 	_set_animals_interactive(true)
 
 func _on_back_pressed() -> void:
+	if mouse_ghost:
+		mouse_ghost.queue_free()
+		mouse_ghost = null
 	_lobby()
 
 func _on_edit_pressed() -> void:

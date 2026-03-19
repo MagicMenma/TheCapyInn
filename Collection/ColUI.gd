@@ -1,6 +1,8 @@
 extends Control
 
 @export var slot: PackedScene
+
+@onready var collection_ui: Control = $"."
 @onready var scroll_container = $ScrollContainer
 @onready var grid_container = $ScrollContainer/GridContainer
 
@@ -20,6 +22,9 @@ var scr_mini_height: float = 174.0 # 缩小后的高度
 var scr_mini_y: float = 900.0 # 缩小后的y高度
 
 var current_unlocked_list = GameManager.unlocked_animals.keys()
+
+var min_menu = false
+
 
 func _ready():
 	# 设置初始状态：全屏
@@ -60,7 +65,7 @@ func _on_hide_pressed() -> void:
 	_mini_container() #最小化图标容器
 	
 	# 缩小动画：从 1080px 变到 190px
-	var tween = create_tween()
+	var tween = create_tween().set_parallel(true)
 	tween.tween_property(frame, "size:y", mini_height, anim_speed)\
 		.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	
@@ -77,7 +82,7 @@ func _on_show_pressed() -> void:
 	_full_container() #最大化图标容器
 	
 	# 放大动画：从 190px 变回 1080px
-	var tween = create_tween()
+	var tween = create_tween().set_parallel(true)
 	tween.tween_property(frame, "size:y", full_height, anim_speed)\
 		.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	
@@ -101,3 +106,35 @@ func _mini_container():
 	grid_container.size_flags_vertical = SIZE_SHRINK_CENTER
 	
 	grid_container.columns = current_unlocked_list.size()
+
+
+# 开始放置动物时 隐藏/显示菜单 动画
+func hide_menu_smooth():
+	var tween = create_tween().set_parallel(true)
+	if show_btn.visible:
+		min_menu = true
+		show_btn.visible = false
+		tween.tween_property(grid_container, "modulate:a", 0, anim_speed)
+		tween.tween_property(collection_ui, "position:y", 200, anim_speed)\
+			.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	else:
+		hide_btn.visible = false
+		tween.tween_property(grid_container, "modulate:a", 0, anim_speed)
+		tween.tween_property(collection_ui, "position:y", 1080, anim_speed)\
+			.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+
+func show_menu_smooth():
+	var tween = create_tween().set_parallel(true)
+	if min_menu:
+		show_btn.visible = true
+		tween.tween_property(grid_container, "modulate:a", 1, anim_speed - 0.2)
+		tween.tween_property(collection_ui, "position:y", 0, anim_speed)\
+			.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	else:
+		hide_btn.visible = true
+		tween.tween_property(grid_container, "modulate:a", 1, anim_speed - 0.2)
+		tween.tween_property(collection_ui, "position:y", 0, anim_speed)\
+			.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		
+	await get_tree().create_timer(anim_speed - 0.8).timeout
+	min_menu = false
