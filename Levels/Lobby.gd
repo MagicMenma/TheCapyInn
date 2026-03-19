@@ -37,9 +37,11 @@ func _spawn_saved_animal(data: Dictionary):
 	var animal_scene = GameManager.get_scene_by_type(data["type"])
 	if animal_scene:
 		var new_animal = animal_scene.instantiate()
+		# --- 先添加到层级 ---
+		placement_layer.add_child(new_animal)
+		# --- 此时节点已在场景树中，可以安全地赋值全局坐标 ---
 		new_animal.global_position = Vector2(data["pos_x"], data["pos_y"])
 		
-		placement_layer.add_child(new_animal)
 		new_animal.add_to_group("animalsPLB")
 		if lobby.visible:
 			new_animal.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -82,21 +84,18 @@ func _input(event):
 
 
 func _confirm_placement():
-	# TODO: 这里需要加入合法性检测（比如是否碰撞到墙壁）
-	
 	if is_position_valid():
 		# 1. 获取当前预览的位置
-		var final_position = mouse_ghost.global_position
+		var final_global_pos = mouse_ghost.global_position
 		# 2. 彻底删除预览 (Ghost)
 		mouse_ghost.free()
 		mouse_ghost = null
 		# 3. 实例化一个全新的“实体”动物
-		# 这里使用 GameManager 存储的当前选中的场景资源
 		var new_animal = GameManager.placing_scene.instantiate()
 		# 4. 设置属性
-		new_animal.global_position = final_position
-		# 5. 添加到场景树
 		placement_layer.add_child(new_animal)
+		new_animal.global_position = final_global_pos
+		# 5. 添加到场景树
 		new_animal.add_to_group("animalsPLB")
 		# 6. 更新库存并结束放置模式
 		GameManager.unlocked_animals[GameManager.current_placing_animal_id]["count"] -= 1
