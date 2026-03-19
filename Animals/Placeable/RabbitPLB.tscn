@@ -42,3 +42,7 @@ flip_speed = 2
 [node name="img" parent="." index="0" unique_id=1954322614]
 material = SubResource("ShaderMaterial_44ygf")
 texture = ExtResource("2_22kl2")
+
+[node name="CollisionPolygon2D" parent="Area2D" parent_id_path=PackedInt32Array(59860936) index="0" unique_id=2112329907]
+position = Vector2(-89, -61)
+polygon = PackedVector2Array(24, 54, 23, 90, 55, 114, 111, 114, 148, 83, 154, 16, 147, 10, 98, 10, 85, 29, 85, 46)

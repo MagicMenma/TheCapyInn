@@ -34,10 +34,29 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 10.0
 shader_parameter/active = false
 
-[node name="AnimalDeco" type="TextureButton" unique_id=1119426501]
+[node name="AnimalPLB" type="TextureButton" unique_id=1119426501]
+custom_minimum_size = Vector2(184, 150)
+offset_right = 184.0
+offset_bottom = 150.0
+pivot_offset = Vector2(92, 75)
+size_flags_horizontal = 4
 script = ExtResource("1_4o2bp")
 
 [node name="img" type="Sprite2D" parent="." unique_id=1954322614]
 material = SubResource("ShaderMaterial_bsmu7")
-scale = Vector2(0.61641943, 0.6141953)
+position = Vector2(92, 76)
+scale = Vector2(0.616, 0.616)
 texture = ExtResource("2_xv1nb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=59860936]
+position = Vector2(92, 75)
+collision_layer = 256
+collision_mask = 272
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=2112329907]
+visible = false
+position = Vector2(3, 14)
+polygon = PackedVector2Array(-3, -8, -3, 132, 181, 132, 181, -8)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

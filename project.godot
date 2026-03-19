@@ -43,6 +43,11 @@ mouse_right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_5="Terrian"
+2d_physics/layer_9="Placeable Animal"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

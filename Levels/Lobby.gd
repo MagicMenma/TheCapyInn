@@ -41,7 +41,22 @@ func _on_placement_started():
 func _process(_delta):
 	# 让预览跟随鼠标
 	if mouse_ghost:
+		# 让预览跟随鼠标
 		mouse_ghost.global_position = get_global_mouse_position()
+		
+		# 检测碰撞
+		if is_position_valid():
+			mouse_ghost._placeable()
+		else:
+			mouse_ghost._no_placeable()
+
+func is_position_valid() -> bool:
+	# 获取 mouse_ghost 下面的 Area2D 节点
+	var area = mouse_ghost.get_node("Area2D")
+	# 检查当前是否有重叠的其他 Area
+	var overlaps = area.get_overlapping_areas()
+	# 如果重叠列表不为空，说明撞到其他动物了，返回 false
+	return overlaps.size() == 0
 
 func _input(event):
 	# 监听点击逻辑
@@ -59,13 +74,13 @@ func _input(event):
 func _confirm_placement():
 	# TODO: 这里需要加入合法性检测（比如是否碰撞到墙壁）
 	
-	# 1. 实体化
-	mouse_ghost.modulate.a = 1.0
-
-	# 2. 从“手中”销毁引用
-	mouse_ghost = null
-	# 3. 扣除库存
-	GameManager.unlocked_animals[GameManager.current_placing_animal_id]["count"] -= 1
+	if is_position_valid():
+		mouse_ghost.modulate.a = 1.0
+		mouse_ghost._is_placed()
+		# 2. 从“手中”销毁引用
+		mouse_ghost = null
+		# 3. 扣除库存
+		GameManager.unlocked_animals[GameManager.current_placing_animal_id]["count"] -= 1
 	
 
 func _cancel_placement():

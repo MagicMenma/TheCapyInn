@@ -40,3 +40,7 @@ animal_type = "Capybara"
 [node name="img" parent="." index="0" unique_id=1954322614]
 material = SubResource("ShaderMaterial_ldps0")
 texture = ExtResource("2_wqqmx")
+
+[node name="CollisionPolygon2D" parent="Area2D" parent_id_path=PackedInt32Array(59860936) index="0" unique_id=2112329907]
+position = Vector2(-89, -60)
+polygon = PackedVector2Array(-3, 36, -3, 95, 21, 132, 120, 132, 175, 76, 175, 40, 181, -9, 165, -9, 98, 9, 21, 15)

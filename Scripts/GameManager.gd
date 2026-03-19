@@ -16,12 +16,12 @@ var current_placing_animal_id: String = ""
 var placing_scene: PackedScene = null
 
 var unlocked_animals = {
-	"Capybara": {"unlocked": true, "count": 1, "scene": "res://Animals/Placable/CapybaraPLB.tscn"},
-	"Bear": {"unlocked": true, "count": 2, "scene": "res://Animals/Placable/BearPLB.tscn"},
-	"Rabbit": {"unlocked": true, "count": 3, "scene": "res://Animals/Placable/RabbitPLB.tscn"},
-	"Capybara_Bathing": {"unlocked": true, "count": 1, "scene": "res://Animals/Placable/CapybaraPLB.tscn"},
-	"Rabbit_Bathing": {"unlocked": true, "count": 3, "scene": "res://Animals/Placable/RabbitPLB.tscn"},
-	"Bear_Bathing": {"unlocked": true, "count": 3, "scene": "res://Animals/Placable/BearPLB.tscn"}
+	"Capybara": {"unlocked": true, "count": 1, "scene": "res://Animals/Placeable/CapybaraPLB.tscn"},
+	"Bear": {"unlocked": true, "count": 2, "scene": "res://Animals/Placeable/BearPLB.tscn"},
+	"Rabbit": {"unlocked": true, "count": 3, "scene": "res://Animals/Placeable/RabbitPLB.tscn"},
+	"Capybara_Bathing": {"unlocked": true, "count": 1, "scene": "res://Animals/Placeable/CapybaraPLB.tscn"},
+	"Rabbit_Bathing": {"unlocked": true, "count": 3, "scene": "res://Animals/Placeable/RabbitPLB.tscn"},
+	"Bear_Bathing": {"unlocked": true, "count": 3, "scene": "res://Animals/Placeable/BearPLB.tscn"}
 }
 
 
