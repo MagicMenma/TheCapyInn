@@ -48,7 +48,7 @@ anchor_bottom = 0.5
 offset_left = 720.0
 offset_top = 1080.0
 offset_right = 1440.0
-offset_bottom = 1270.0
+offset_bottom = 1290.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 3.1415927
@@ -61,9 +61,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 600.0
-offset_top = 855.0
+offset_top = 832.0
 offset_right = 699.2689
-offset_bottom = 905.0
+offset_bottom = 882.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
@@ -113,21 +113,20 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 20.0
-offset_top = 900.0
+offset_top = 882.0
 offset_right = 700.0
-offset_bottom = 1074.0
+offset_bottom = 1067.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer" unique_id=13926729]
 layout_mode = 2
 size_flags_horizontal = 2
-size_flags_vertical = 6
+size_flags_vertical = 3
 theme_override_constants/h_separation = 53
 columns = 7
 
 [node name="Panel" parent="ScrollContainer/GridContainer" unique_id=730846750 instance=ExtResource("2_fwg7m")]
-visible = false
 layout_mode = 2
 
 [node name="ScrollContainerFull" type="ScrollContainer" parent="." unique_id=763493845]

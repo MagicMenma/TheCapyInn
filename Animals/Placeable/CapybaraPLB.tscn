@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://chbfpwt5ahian"]
 
 [ext_resource type="PackedScene" uid="uid://6wvfwva6rc8i" path="res://Animals/Placeable/AnimalPLB.tscn" id="1_hycsv"]
-[ext_resource type="Texture2D" uid="uid://dpwrwypjuhrd5" path="res://Texture/Animals/capybara.png" id="2_wqqmx"]
+[ext_resource type="Texture2D" uid="uid://dpwrwypjuhrd5" path="res://Texture/Animals/Capybara.png" id="2_wqqmx"]
 
 [sub_resource type="Shader" id="Shader_peu82"]
 code = "shader_type canvas_item;

@@ -25,6 +25,7 @@ var unlocked_animals = {
 }
 
 
+
 func add_to_selection(animal):                               #游戏失败后停止计算合集
 	current_selection.append(animal)
 	

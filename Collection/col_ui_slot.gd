@@ -7,7 +7,7 @@ extends TextureButton
 func display_animal(animal_id: String):
 	if not is_node_ready(): await ready
 	
-	name_label.text = animal_id
+	name_label.text = animal_id.replace("_", " ")
 	
 	var texture_path = "res://Texture/Animals/" + animal_id + ".png"
 	

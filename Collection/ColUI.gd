@@ -13,13 +13,13 @@ extends Control
 
 # 背景框参数
 var full_height: float = 1080.0 # 全屏高度
-var mini_height: float = 190.0  # 缩小后的高度
+var mini_height: float = 210.0  # 缩小后的高度
 var anim_speed: float = 1     # 动画持续时间
 # Container参数
 var scr_full_height: float = 900.0 # 全屏高度
 var scr_full_y: float = 100.0 # 全屏y高度
-var scr_mini_height: float = 174.0 # 缩小后的高度
-var scr_mini_y: float = 900.0 # 缩小后的y高度
+var scr_mini_height: float = 185.0 # 缩小后的高度
+var scr_mini_y: float = 882.0 # 缩小后的y高度
 
 var current_unlocked_list = GameManager.unlocked_animals.keys()
 
@@ -34,8 +34,6 @@ func _ready():
 	
 	# 模拟从 GameManager 获取已解锁的动物列表
 	refresh_collection(current_unlocked_list)
-	# 水平放置滚动条
-	grid_container.columns = current_unlocked_list.size()
 
 
 func refresh_collection(animal_list: Array):
@@ -43,15 +41,22 @@ func refresh_collection(animal_list: Array):
 	for child in grid_container.get_children():
 		child.queue_free()
 	
-	# 2. 根据数组长度，灵活生成 Slot
 	for animal_name in animal_list:
-		# 实例化一个新格子
+		# --- 核心改进：检测是否解锁 ---
+		# 从 GameManager 的字典中获取该动物的数据
+		var animal_data = GameManager.unlocked_animals.get(animal_name)
+		
+		# 如果找不到该动物数据，或者 unlocked 为 false，则跳过本次循环
+		if animal_data == null or animal_data.get("unlocked", false) == false:
+			continue # 跳过，不生成这个 Slot
+		
+		# 3. 只有解锁了，才实例化新格子
 		var new_slot = slot.instantiate()
-		
-		# 将格子添加到 GridContainer
 		grid_container.add_child(new_slot)
-		
 		new_slot.display_animal(animal_name)
+	
+	# 水平放置滚动条
+	grid_container.columns = current_unlocked_list.size()
 
 
 
