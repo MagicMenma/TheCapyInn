@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://v20waa7agp7u"]
+
+[ext_resource type="PackedScene" uid="uid://6wvfwva6rc8i" path="res://Animals/Placeable/AnimalPLB.tscn" id="1_0eik8"]
+[ext_resource type="Texture2D" uid="uid://c3dsicjlnxepi" path="res://Texture/Animals/Cat.png" id="2_p5e3r"]
+
+[sub_resource type="Shader" id="Shader_peu82"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0, 1.0, 1.0, 1.0); // 描边颜色
+uniform float line_thickness : hint_range(0, 10) = 15.0; // 描边粗细
+uniform bool active = false; // 是否开启高亮
+
+void fragment() {
+    vec4 col = texture(TEXTURE, UV);
+    if (active) {
+        vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+        float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+        outline += texture(TEXTURE, UV + vec2(size.x, 0)).a;
+        outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
+        outline += texture(TEXTURE, UV + vec2(0, size.y)).a;
+        outline = min(outline, 1.0);
+        
+        COLOR = mix(col, line_color, outline - col.a);
+    } else {
+        COLOR = col;
+    }
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5e3r"]
+resource_local_to_scene = true
+shader = SubResource("Shader_peu82")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 10.0
+shader_parameter/active = false
+
+[node name="AnimalPLB" unique_id=1119426501 instance=ExtResource("1_0eik8")]
+
+[node name="Shadow" parent="." index="0" unique_id=1817663640]
+material = SubResource("ShaderMaterial_p5e3r")
+scale = Vector2(0.48387095, 0.616)
+
+[node name="img" parent="." index="1" unique_id=1954322614]
+material = SubResource("ShaderMaterial_p5e3r")
+position = Vector2(92, 103)
+texture = ExtResource("2_p5e3r")
+
+[node name="Area2D" parent="." index="2" unique_id=59860936]
+visible = false
+
+[node name="CollisionPolygon2D" parent="Area2D" index="0" unique_id=2112329907]
+visible = true
+position = Vector2(3, 41)
+polygon = PackedVector2Array(-60, -43, -76, -26, -81, -15, -81, 6, -76, 6, -76, 16, -60, 33, -22, 33, -22, 38, 48, 38, 48, 11, 53, 11, 70, -16, 70, -31, 64, -64, 49, -64, 49, -59, 43, -59, 43, -53, 16, -53, 16, -58, 10, -64, -6, -64, -44, -43)

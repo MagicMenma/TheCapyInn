@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://chbfpwt5ahian"]
 
 [ext_resource type="PackedScene" uid="uid://6wvfwva6rc8i" path="res://Animals/Placeable/AnimalPLB.tscn" id="1_hycsv"]
-[ext_resource type="Texture2D" uid="uid://dpwrwypjuhrd5" path="res://Texture/Animals/Capybara.png" id="2_wqqmx"]
+[ext_resource type="Texture2D" uid="uid://dpwrwypjuhrd5" path="res://Texture/Animals/capybara.png" id="2_wqqmx"]
 
 [sub_resource type="Shader" id="Shader_peu82"]
 code = "shader_type canvas_item;
@@ -39,13 +39,17 @@ animal_type = "Capybara"
 
 [node name="Shadow" parent="." index="0" unique_id=1817663640]
 material = SubResource("ShaderMaterial_ldps0")
-position = Vector2(89, 146)
 scale = Vector2(0.5395895, 0.616)
 
 [node name="img" parent="." index="1" unique_id=1954322614]
 material = SubResource("ShaderMaterial_ldps0")
+position = Vector2(92, 84)
 texture = ExtResource("2_wqqmx")
 
-[node name="CollisionPolygon2D" parent="Area2D" parent_id_path=PackedInt32Array(59860936) index="0" unique_id=2112329907]
-position = Vector2(-89, -60)
+[node name="Area2D" parent="." index="2" unique_id=59860936]
+visible = false
+
+[node name="CollisionPolygon2D" parent="Area2D" index="0" unique_id=2112329907]
+visible = true
+position = Vector2(-89, -52)
 polygon = PackedVector2Array(-3, 36, -3, 95, 21, 132, 120, 132, 175, 76, 175, 40, 181, -9, 165, -9, 98, 9, 21, 15)
