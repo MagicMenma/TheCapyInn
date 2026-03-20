@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cdqrkqpfuqseb"]
+
+[ext_resource type="Script" uid="uid://cqo43y7yyacyk" path="res://Animals/Bathing/AnimalBase.gd" id="1_rsaio"]
+[ext_resource type="Shader" uid="uid://ciy1wepdfm6ul" path="res://Animals/Outiliner.gdshader" id="2_lag11"]
+[ext_resource type="Texture2D" uid="uid://3n6f8taiqbqq" path="res://Texture/Animals/AnimalBase.png" id="2_peu82"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_peu82"]
+friction = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bsmu7"]
+resource_local_to_scene = true
+shader = ExtResource("2_lag11")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 20.0
+shader_parameter/active = false
+
+[node name="AnimalBase" type="RigidBody2D" unique_id=1328516180]
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_peu82")
+can_sleep = false
+lock_rotation = true
+linear_damp = 4.0
+script = ExtResource("1_rsaio")
+animal_type = "AnimalBase"
+
+[node name="Bathing" type="Sprite2D" parent="." unique_id=1944208589]
+material = SubResource("ShaderMaterial_bsmu7")
+scale = Vector2(0.61641943, 0.6141953)
+texture = ExtResource("2_peu82")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=846298759]
+position = Vector2(3, 14)
+polygon = PackedVector2Array(-3, -8, -3, 132, 181, 132, 181, -8)

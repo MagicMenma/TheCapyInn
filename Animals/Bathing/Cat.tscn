@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cetn7v0s4hiws"]
+
+[ext_resource type="PackedScene" uid="uid://cdqrkqpfuqseb" path="res://Animals/Bathing/AnimalBase.tscn" id="1_kf4sg"]
+[ext_resource type="Shader" uid="uid://ciy1wepdfm6ul" path="res://Animals/Outiliner.gdshader" id="2_ekel3"]
+[ext_resource type="Texture2D" uid="uid://wcugc38k1g7s" path="res://Texture/Animals/Cat_Bathing.png" id="3_ekel3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ekel3"]
+resource_local_to_scene = true
+shader = ExtResource("2_ekel3")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 20.0
+shader_parameter/active = false
+
+[node name="AnimalBase" unique_id=1328516180 instance=ExtResource("1_kf4sg")]
+
+[node name="Bathing" parent="." index="0" unique_id=1944208589]
+material = SubResource("ShaderMaterial_ekel3")
+texture = ExtResource("3_ekel3")
+
+[node name="CollisionPolygon2D" parent="." index="1" unique_id=846298759]
+visible = false
+polygon = PackedVector2Array(-81, -17, -81, 4, -76, 14, -59, 31, 65, 31, 70, 19, 70, -48, 64, -65, -6, -65, -11, -49, -11, -43, -60, -44, -76, -27)

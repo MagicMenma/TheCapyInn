@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://be3qw6jhtryjk"]
+
+[ext_resource type="PackedScene" uid="uid://cdqrkqpfuqseb" path="res://Animals/Bathing/AnimalBase.tscn" id="1_bsmu7"]
+[ext_resource type="Texture2D" uid="uid://dw62hft0lg8vy" path="res://Texture/Animals/Capybara_Bathing.png" id="2_7wm0i"]
+
+[sub_resource type="Shader" id="Shader_peu82"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0, 1.0, 1.0, 1.0); // 描边颜色
+uniform float line_thickness : hint_range(0, 10) = 15.0; // 描边粗细
+uniform bool active = false; // 是否开启高亮
+
+void fragment() {
+    vec4 col = texture(TEXTURE, UV);
+    if (active) {
+        vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+        float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+        outline += texture(TEXTURE, UV + vec2(size.x, 0)).a;
+        outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
+        outline += texture(TEXTURE, UV + vec2(0, size.y)).a;
+        outline = min(outline, 1.0);
+        
+        COLOR = mix(col, line_color, outline - col.a);
+    } else {
+        COLOR = col;
+    }
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hvlq7"]
+resource_local_to_scene = true
+shader = SubResource("Shader_peu82")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 10.0
+shader_parameter/active = false
+
+[node name="Capybara" unique_id=1328516180 instance=ExtResource("1_bsmu7")]
+animal_type = "Capybara"
+
+[node name="Bathing" parent="." index="0" unique_id=1944208589]
+material = SubResource("ShaderMaterial_hvlq7")
+texture = ExtResource("2_7wm0i")
+
+[node name="CollisionPolygon2D" parent="." index="1" unique_id=846298759]
+visible = false
+polygon = PackedVector2Array(-95, -36, -95, 53, 83, 53, 83, -36, 89, -73, 89, -84, 71, -84, 52, -73, 52, -67, 3, -67, 3, -61, -71, -61)
