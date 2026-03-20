@@ -35,7 +35,7 @@ shader_parameter/line_thickness = 10.0
 shader_parameter/active = false
 
 [node name="AnimalDeco" unique_id=1119426501 instance=ExtResource("1_14605")]
-animal_type = "Capybara"
+animal_type = "Capybara_Golden"
 
 [node name="Shadow" parent="." index="0" unique_id=1817663640]
 material = SubResource("ShaderMaterial_14605")
