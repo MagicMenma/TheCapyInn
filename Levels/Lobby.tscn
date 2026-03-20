@@ -111,6 +111,15 @@ position = Vector2(-340, -520)
 texture = ExtResource("4_j83j6")
 centered = false
 
+[node name="Area2D" type="Area2D" parent="." unique_id=1082856169]
+visible = false
+position = Vector2(0, 849)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=941088261]
+polygon = PackedVector2Array(-58, -896, -64, 357, -95, 358, -98, -927, 829, -934, 832, 365, -53, 357, -53, 300, 799, 306, 800, -898)
+
 [node name="PlacementLayer" type="Control" parent="." unique_id=1148065014]
 layout_mode = 1
 anchors_preset = 8
@@ -125,14 +134,6 @@ offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Area2D" type="Area2D" parent="PlacementLayer" unique_id=1082856169]
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlacementLayer/Area2D" unique_id=941088261]
-position = Vector2(0, 833)
-polygon = PackedVector2Array(-58, -896, -54, 1746, -3431, 1720, -3417, -2324, 4186, -2340, 4259, 1779, -71, 1746, -53, 300, 799, 306, 800, -898)
 
 [node name="Lobby" type="Control" parent="." unique_id=1191138100]
 z_index = 10
