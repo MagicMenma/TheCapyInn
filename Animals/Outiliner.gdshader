@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform vec4 line_color : source_color = vec4(1.0, 1.0, 1.0, 1.0); // 描边颜色
-uniform float line_thickness : hint_range(0, 20) = 1.0; // 描边粗细
+uniform float line_thickness : hint_range(0, 10) = 1.0; // 描边粗细
 uniform bool active = false; // 是否开启高亮
 
 void fragment() {

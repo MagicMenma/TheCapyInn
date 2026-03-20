@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cdqrkqpfuqseb"]
+
+[ext_resource type="Script" uid="uid://cqo43y7yyacyk" path="res://Animals/AnimalBase.gd" id="1_rsaio"]
+[ext_resource type="Texture2D" uid="uid://3n6f8taiqbqq" path="res://Texture/Animals/AnimalBase.png" id="2_peu82"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_peu82"]
+friction = 0.05
+
+[sub_resource type="Shader" id="Shader_peu82"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0, 1.0, 1.0, 1.0); // 描边颜色
+uniform float line_thickness : hint_range(0, 10) = 15.0; // 描边粗细
+uniform bool active = false; // 是否开启高亮
+
+void fragment() {
+    vec4 col = texture(TEXTURE, UV);
+    if (active) {
+        vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+        float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+        outline += texture(TEXTURE, UV + vec2(size.x, 0)).a;
+        outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
+        outline += texture(TEXTURE, UV + vec2(0, size.y)).a;
+        outline = min(outline, 1.0);
+        
+        COLOR = mix(col, line_color, outline - col.a);
+    } else {
+        COLOR = col;
+    }
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bsmu7"]
+resource_local_to_scene = true
+shader = SubResource("Shader_peu82")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 10.0
+shader_parameter/active = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsaio"]
+size = Vector2(184, 140)
+
+[node name="AnimalBase" type="RigidBody2D" unique_id=1328516180]
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_peu82")
+can_sleep = false
+lock_rotation = true
+linear_damp = 4.0
+script = ExtResource("1_rsaio")
+animal_type = "AnimalBase"
+
+[node name="Bathing" type="Sprite2D" parent="." unique_id=1944208589]
+material = SubResource("ShaderMaterial_bsmu7")
+scale = Vector2(0.61641943, 0.6141953)
+texture = ExtResource("2_peu82")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=886505176]
+shape = SubResource("RectangleShape2D_rsaio")

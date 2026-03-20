@@ -39,8 +39,8 @@ animal_type = "Capybara"
 
 [node name="Shadow" parent="." index="0" unique_id=1817663640]
 material = SubResource("ShaderMaterial_ldps0")
-position = Vector2(86.00001, 146)
-scale = Vector2(0.5571849, 0.616)
+position = Vector2(89, 146)
+scale = Vector2(0.5395895, 0.616)
 
 [node name="img" parent="." index="1" unique_id=1954322614]
 material = SubResource("ShaderMaterial_ldps0")
