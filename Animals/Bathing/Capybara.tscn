@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://cos13cipdy1vs"]
+[gd_scene format=3 uid="uid://be3qw6jhtryjk"]
 
-[ext_resource type="PackedScene" uid="uid://cdqrkqpfuqseb" path="res://Animals/AnimalBase.tscn" id="1_4etow"]
-[ext_resource type="Texture2D" uid="uid://cx1j1olw72sq8" path="res://Texture/Animals/Rabbit_Bathing.png" id="2_jmvtb"]
+[ext_resource type="PackedScene" uid="uid://cdqrkqpfuqseb" path="res://Animals/Bathing/AnimalBase.tscn" id="1_bsmu7"]
+[ext_resource type="Texture2D" uid="uid://dw62hft0lg8vy" path="res://Texture/Animals/Capybara_Bathing.png" id="2_7wm0i"]
 
 [sub_resource type="Shader" id="Shader_peu82"]
 code = "shader_type canvas_item;
@@ -27,28 +27,26 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kwd0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hvlq7"]
 resource_local_to_scene = true
 shader = SubResource("Shader_peu82")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 10.0
 shader_parameter/active = false
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6pe18"]
-radius = 34.64775
-height = 125.43207
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e33e2"]
+radius = 59.15584
+height = 181.85695
 
-[node name="Rabbit" unique_id=1328516180 instance=ExtResource("1_4etow")]
-animal_type = "Rabbit"
-score_value = 50
-hover_color = Color(0.9946225, 0.9956867, 0.71373934, 1)
+[node name="Capybara" unique_id=1328516180 instance=ExtResource("1_bsmu7")]
+animal_type = "Capybara"
 
 [node name="Bathing" parent="." index="0" unique_id=1944208589]
-material = SubResource("ShaderMaterial_2kwd0")
-texture = ExtResource("2_jmvtb")
+material = SubResource("ShaderMaterial_hvlq7")
+texture = ExtResource("2_7wm0i")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=886505176]
 visible = false
-position = Vector2(-2.9999998, 17)
-rotation = 1.5598981
-shape = SubResource("CapsuleShape2D_6pe18")
+position = Vector2(-2, 10)
+rotation = 1.480378
+shape = SubResource("CapsuleShape2D_e33e2")

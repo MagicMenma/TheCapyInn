@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpwrwypjuhrd5"
-path="res://.godot/imported/capybara.png-a153f7e535aae2feadada81c9f397762.ctex"
+uid="uid://tllktge03m1i"
+path="res://.godot/imported/Cat_Bathing.png-db81d3902ab9317ee269c3b6b5a66b7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texture/Animals/capybara.png"
-dest_files=["res://.godot/imported/capybara.png-a153f7e535aae2feadada81c9f397762.ctex"]
+source_file="res://Texture/Animals/Cat_Bathing.png"
+dest_files=["res://.godot/imported/Cat_Bathing.png-db81d3902ab9317ee269c3b6b5a66b7e.ctex"]
 
 [params]
 

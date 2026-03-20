@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdqrkqpfuqseb"]
 
-[ext_resource type="Script" uid="uid://cqo43y7yyacyk" path="res://Animals/AnimalBase.gd" id="1_rsaio"]
+[ext_resource type="Script" uid="uid://cqo43y7yyacyk" path="res://Animals/Bathing/AnimalBase.gd" id="1_rsaio"]
 [ext_resource type="Texture2D" uid="uid://3n6f8taiqbqq" path="res://Texture/Animals/AnimalBase.png" id="2_peu82"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_peu82"]
