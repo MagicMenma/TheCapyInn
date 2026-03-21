@@ -45,4 +45,4 @@ func _on_difficulty_timer_timeout() -> void:
 	if spawn_interval > min_interval:
 		spawn_interval -= 0.05
 		timer.wait_time = spawn_interval
-		print("难度提升！当前间隔：", spawn_interval)
+		#print("难度提升！当前间隔：", spawn_interval)

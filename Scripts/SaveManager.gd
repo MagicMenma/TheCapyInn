@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_PATH = "user://placed_animals.json" # user:// 是 Godot 专门存储存档的路径
+const SAVE_PATH = "user://player_data.json" # user:// 是 Godot 专门存储存档的路径
 
 # 保存功能：需要传入当前所有动物的数组
 func save_placed_animals(animals_array: Array):
@@ -30,10 +30,13 @@ func load_placed_animals() -> Array:
 			return data
 	# 情况 B：如果存档不存在（第一次进游戏或刚重置），返回“初始宾客”
 	print("正在生成初始宾客...")
+	var screen_rect = get_viewport().get_visible_rect() #获取屏幕宽度
+	var sw = screen_rect.size.x  
+	sw = (sw - 720) / 2  								#宽屏幕修正值
 	var default_guests = [
-		{ "type": "Bear", "pos_x": 86, "pos_y": 547 },
-		{ "type": "Capybara", "pos_x": 487, "pos_y": 471 },
-		{ "type": "Rabbit", "pos_x": 317, "pos_y": 391 }
+		{ "type": "Bear", "pos_x": sw + 86, "pos_y": 547 },
+		{ "type": "Capybara", "pos_x": sw + 487, "pos_y": 471 },
+		{ "type": "Rabbit", "pos_x": sw + 317, "pos_y": 391 }
 	]
 	return default_guests
 

@@ -10,10 +10,7 @@ func _ready() -> void:
 	_update_score_display(GameManager.current_score)
 	GameManager.score_changed.connect(_on_game_manager_score_changed)
 	
-	# 1. 初始检测
-	_check_and_toggle_noren()
-	# 2. 监听窗口大小变化（防止玩家在网页端手动调整浏览器窗口大小）
-	get_tree().root.size_changed.connect(_check_and_toggle_noren)
+	toggle_noren()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,21 +18,7 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _check_is_view_size_mobile() -> bool:
-	# 获取视口的实际尺寸
-	var view_size = get_viewport().get_visible_rect().size
-	# 计算纵横比 (高 / 宽)
-	# 手机通常是长条状，所以比值会大于 1.5 (16:9 约等于 1.77)
-	var aspect_ratio = view_size.y / view_size.x
-	# 如果比值大于 1.3，通常意味着是竖屏模式（手机或窄窗口）
-	if aspect_ratio > 1.3:
-		return true
-	else:
-		return false
-
-func _check_and_toggle_noren():
-	noren.visible = true
-	print("检测到移动端比例，暖帘已开启")
+func toggle_noren():
 	noren.visible = true
 	noren.modulate.a = 0 # 初始透明
 	noren.position.y = -80 # 初始位置稍高
@@ -44,12 +27,11 @@ func _check_and_toggle_noren():
 	tween.tween_property(noren, "position:y", 0.0, 2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func _close_noren():
-	if !_check_is_view_size_mobile():
-		noren.modulate.a = 1 # 初始透明
-		noren.position.y = 0 # 初始位置稍高
-		var tween = create_tween().set_parallel(true)
-		tween.tween_property(noren, "position:y", -150, 2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		tween.tween_property(noren, "modulate:a", 0, 2)
+	noren.modulate.a = 1 # 初始透明
+	noren.position.y = 0 # 初始位置稍高
+	var tween = create_tween().set_parallel(true)
+	tween.tween_property(noren, "position:y", -150, 2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(noren, "modulate:a", 0, 2)
 
 func _on_game_over_area_overflow_occurred() -> void:
 	# 显示 UI + 更新 GameOverInterface

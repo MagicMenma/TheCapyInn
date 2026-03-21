@@ -39,6 +39,7 @@ radius = 64.0
 height = 172.0
 
 [node name="AnimalBase" unique_id=1328516180 instance=ExtResource("1_auloe")]
+animal_type = "Dog"
 
 [node name="Bathing" parent="." index="0" unique_id=1944208589]
 material = SubResource("ShaderMaterial_unwnc")

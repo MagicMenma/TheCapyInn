@@ -6,6 +6,7 @@ signal entered_placement_mode
 
 var current_score: int = 0
 var daily_score: int = 0
+var daily_target_score: int = 5000
 var daily_stamina: int = 3
 var current_selection = []
 var game_over: bool = false
@@ -69,7 +70,7 @@ func full_match(animal2):
 			current_selection.clear()
 			animal2.selected() # 只保留最后一个动物
 
-# 待使用
+
 func clear_selection():
 	if current_selection.is_empty():
 		return
@@ -86,7 +87,7 @@ func clear_score():
 	current_score = 0
 	score_changed.emit(current_score)
 	current_selection.clear()
-	
+
 func new_day():
 	daily_score = 0
 

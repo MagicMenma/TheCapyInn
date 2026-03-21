@@ -1,22 +1,25 @@
 extends Control
 
 @onready var stamina_label: Label = $ButtonSet/PlayAgain/Stamina
-@onready var progress_bar = $ProgressBar
-@onready var status_label: RichTextLabel = $ProgressBar/StatusLabel
+@onready var progress_bar = $Control/ProgressBar
+@onready var status_label: RichTextLabel = $Control/ProgressBar/StatusLabel
+@onready var score_this_round: RichTextLabel = $Control/ProgressBar/ScoreThisRound
 @onready var ads_again: Button = $ButtonSet/AdsAgain
 @onready var play_again: Button = $ButtonSet/PlayAgain
 @onready var button_set: Control = $ButtonSet
-@onready var score_this_round: RichTextLabel = $ProgressBar/ScoreThisRound
+
 
 
 # 对局结束后总控制器
 func update_interface():
-	calculate_daily_stamina()
-	update_stamina_ui()
-	play_score_animation()
+	_calculate_daily_stamina()
+	_update_stamina_ui()
+	_play_score_animation()
+	_check_total_score()
 
 
-func play_score_animation():
+func _play_score_animation():
+	progress_bar.max_value = GameManager.daily_target_score
 	# 1. 初始状态设置
 	var start_val = GameManager.daily_score
 	var added_val = GameManager.current_score
@@ -34,7 +37,7 @@ func play_score_animation():
 	# 3. 创建 Tween 动画
 	var tween = create_tween()
 	
-	# 让进度条的 value 属性在 1.5 秒内从当前值变到 end_val
+	# 让进度条的 value 属性在 3 秒内从当前值变到 end_val
 	# .set_trans(Tween.TRANS_SINE) 可以让动画更平滑（先快后慢）
 	tween.tween_property(progress_bar, "value", end_val, 3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
@@ -51,15 +54,22 @@ func play_score_animation():
 # 专门更新文字的辅助函数
 func _update_label_text(current_animated_val: int):
 	var format_string = "$$$ [shake rate=15.0 level=8][color=#69EAFF]%d[/color][/shake] / %d to Unlock\nToday's Mystery Animal"
-	status_label.text = format_string % [current_animated_val, progress_bar.max_value]
+	# 按顺序传入：当前动画数值、GameManager 中的目标分数
+	status_label.text = format_string % [current_animated_val, GameManager.daily_target_score]
 	# 每次数字变动，让整个 Label 稍微放大一点再缩回去
 	var t = create_tween()
 	t.tween_property(status_label, "scale", Vector2(1.3, 1.3), 0.05)
 	t.tween_property(status_label, "scale", Vector2(1.0, 1.0), 0.05)
 
+# 结算每日奖励
+func _check_total_score():
+	if(GameManager.current_score >= GameManager.daily_target_score):
+		
+		print("Done Daily")
+		return
 
 # 控制“再玩一次”按钮显示 根据今日体力
-func calculate_daily_stamina():
+func _calculate_daily_stamina():
 	button_set.visible = false
 		
 	await get_tree().create_timer(4).timeout
@@ -71,7 +81,7 @@ func calculate_daily_stamina():
 		play_again.visible = false
 		ads_again.visible = true
 
-func update_stamina_ui():
+func _update_stamina_ui():
 	var stamina = GameManager.daily_stamina
 	match stamina:
 		1:
