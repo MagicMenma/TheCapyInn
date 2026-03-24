@@ -1,21 +1,26 @@
 extends Control
 
-@onready var stamina_label: Label = $ButtonSet/PlayAgain/Stamina
-@onready var progress_bar = $Control/ProgressBar
-@onready var status_label: RichTextLabel = $Control/ProgressBar/StatusLabel
-@onready var score_this_round: RichTextLabel = $Control/ProgressBar/ScoreThisRound
-@onready var ads_again: Button = $ButtonSet/AdsAgain
+@onready var stamina_label: Label = $ButtonSet/Stamina
+@onready var progress_bar = $DailyProgress/ProgressBar
+@onready var status_label: RichTextLabel = $DailyProgress/ProgressBar/StatusLabel
+@onready var score_this_round: RichTextLabel = $DailyProgress/ProgressBar/ScoreThisRound
 @onready var play_again: Button = $ButtonSet/PlayAgain
 @onready var button_set: Control = $ButtonSet
-
+@onready var daily_progress: Control = $DailyProgress
+@onready var mystery_animal: Control = $DailyProgress/MysteryAnimal
+@export var title: Label
+@export var sub_title: Label
 
 
 # 对局结束后总控制器
 func update_interface():
-	_calculate_daily_stamina()
-	_update_stamina_ui()
+	button_set.visible = false
+	
 	_play_score_animation()
 	_check_total_score()
+	
+	_update_stamina_ui()
+	SaveManager.save_stats_only()
 
 
 func _play_score_animation():
@@ -47,7 +52,6 @@ func _play_score_animation():
 	
 	# 5. 动画结束后更新 GameManager 的数据，为下次累加做准备
 	tween.finished.connect(func(): 
-		GameManager.daily_score = end_val
 		GameManager.clear_score()
 		)
 
@@ -63,42 +67,56 @@ func _update_label_text(current_animated_val: int):
 
 # 结算每日奖励
 func _check_total_score():
-	if(GameManager.current_score >= GameManager.daily_target_score):
+	GameManager.daily_score = GameManager.daily_score + GameManager.current_score
+	print(GameManager.daily_score)
+	if(GameManager.daily_score >= GameManager.daily_target_score):
+		if(!GameManager.daily_unlock):
+			await get_tree().create_timer(4).timeout
+			progress_bar.visible = false
+			sub_title.visible = false
+			title.text = String("Today's Special")
+			_show_buttonset_and_cal_stamina(3)
 		
-		print("Done Daily")
-		return
+			mystery_animal.unlockNewAnimal()
+		else:
+			title.text = String("Tomorrow's\nMystery Animal")
+			progress_bar.visible = false
+			sub_title.visible = false
+			mystery_animal.tmr_counter()
+			_show_buttonset_and_cal_stamina(1)
+
+	else:
+		_show_buttonset_and_cal_stamina(4)
 
 # 控制“再玩一次”按钮显示 根据今日体力
-func _calculate_daily_stamina():
+func _show_buttonset_and_cal_stamina(delay_time: int):
 	button_set.visible = false
 		
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(delay_time).timeout
 	button_set.visible = true
-	if GameManager.daily_stamina > 0:
-		play_again.visible = true
-		ads_again.visible = false
-	else:
-		play_again.visible = false
-		ads_again.visible = true
+	play_again.visible = true
 
 func _update_stamina_ui():
 	var stamina = GameManager.daily_stamina
 	match stamina:
 		1:
+			play_again.text = "Play Again"
 			stamina_label.text = "Last Voucher: 🎫"
 		0:
-			stamina_label.text = ""
+			play_again.text = "Watch Ads\nPlay Again"
+			stamina_label.text = "More Free Vouchers 🎫 Tomorrow"
 		_:
-			# 这里的 _ 是默认情况，以防体力超过2点
+			play_again.text = "Play Again"
+			# 默认情况，适用于体力超过2点
 			stamina_label.text = "Vouchers Left: " + "🎫".repeat(stamina)
 
 # Buttons
 func _on_lobby_pressed() -> void:
 	get_tree().change_scene_to_file("res://Levels/Lobby.tscn")
 
-func _on_ads_again_pressed() -> void:
-	get_tree().change_scene_to_file("res://Levels/Board.tscn")
-
 func _on_play_again_pressed() -> void:
-	GameManager.daily_stamina -= 1;
-	get_tree().change_scene_to_file("res://Levels/Board.tscn")
+	if(GameManager.daily_stamina > 0):
+		GameManager.daily_stamina -= 1;
+		get_tree().change_scene_to_file("res://Levels/Board.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Levels/Ads.tscn")

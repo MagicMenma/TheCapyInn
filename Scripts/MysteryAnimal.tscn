@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://b4ya18ivw67jy"]
+
+[ext_resource type="Script" uid="uid://30sx22hu2hcg" path="res://Scripts/MysteryAnimal.gd" id="1_5jkq0"]
+[ext_resource type="Texture2D" uid="uid://bcf1gixtuioa0" path="res://Texture/Animals/MysteryAnimal.png" id="1_navmd"]
+[ext_resource type="Texture2D" uid="uid://3n6f8taiqbqq" path="res://Texture/Animals/AnimalBase.png" id="2_da5tu"]
+[ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="4_rpe3n"]
+
+[sub_resource type="Shader" id="Shader_peu82"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0, 1.0, 1.0, 1.0); // 描边颜色
+uniform float line_thickness : hint_range(0, 10) = 15.0; // 描边粗细
+uniform bool active = false; // 是否开启高亮
+
+void fragment() {
+    vec4 col = texture(TEXTURE, UV);
+    if (active) {
+        vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+        float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+        outline += texture(TEXTURE, UV + vec2(size.x, 0)).a;
+        outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
+        outline += texture(TEXTURE, UV + vec2(0, size.y)).a;
+        outline = min(outline, 1.0);
+        
+        COLOR = mix(col, line_color, outline - col.a);
+    } else {
+        COLOR = col;
+    }
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5jkq0"]
+resource_local_to_scene = true
+shader = SubResource("Shader_peu82")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 10.0
+shader_parameter/active = false
+
+[node name="MysteryAnimal" type="Control" unique_id=1304769299]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5jkq0")
+
+[node name="img" type="Sprite2D" parent="." unique_id=308096823]
+material = SubResource("ShaderMaterial_5jkq0")
+position = Vector2(360, 384)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_da5tu")
+
+[node name="MysteryAnimal" type="Sprite2D" parent="." unique_id=1019003795]
+position = Vector2(359.99997, 382.99997)
+scale = Vector2(0.73280424, 0.73280424)
+texture = ExtResource("1_navmd")
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=417404391]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 514.0
+offset_right = 707.0
+offset_bottom = 580.0
+pivot_offset = Vector2(240, 16)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_rpe3n")
+theme_override_font_sizes/normal_font_size = 42
+bbcode_enabled = true
+text = "Animal Unlocked!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

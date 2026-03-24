@@ -13,11 +13,6 @@ func _ready() -> void:
 	toggle_noren()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func toggle_noren():
 	noren.visible = true
 	noren.modulate.a = 0 # 初始透明

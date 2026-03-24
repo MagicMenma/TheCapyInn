@@ -8,6 +8,7 @@ var current_score: int = 0
 var daily_score: int = 0
 var daily_target_score: int = 5000
 var daily_stamina: int = 3
+var daily_unlock: bool = false
 var current_selection = []
 var game_over: bool = false
 

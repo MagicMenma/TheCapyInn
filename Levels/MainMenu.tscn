@@ -101,7 +101,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jix8l")
-text = "Start Game"
+text = "New Game"
 
 [node name="Options" type="Button" parent="." unique_id=1178290770]
 layout_mode = 1
@@ -179,7 +179,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jix8l")
-text = "Guest Play"
+text = "New Game"
 
 [node name="Title" type="Label" parent="." unique_id=1753827472]
 layout_mode = 1

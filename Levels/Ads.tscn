@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bdal3soyx4jrf"]
+
+[ext_resource type="Script" uid="uid://dqgs0mfrq6rgu" path="res://Scripts/ads.gd" id="1_kirea"]
+[ext_resource type="VideoStream" uid="uid://ywcexvu488ma" path="res://Texture/AdsSample.ogv" id="2_rywbf"]
+[ext_resource type="Texture2D" uid="uid://4k2j7augvj2u" path="res://Texture/Icon/cancel_60dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="3_gom0h"]
+[ext_resource type="Texture2D" uid="uid://ngqg4nol03x0" path="res://Texture/Icon/volume_off_48dp_D9D9D9_FILL0_wght400_GRAD0_opsz48.png" id="4_gom0h"]
+[ext_resource type="Texture2D" uid="uid://cetgja7vctueg" path="res://Texture/Icon/volume_up_48dp_D9D9D9_FILL0_wght400_GRAD0_opsz48.png" id="5_1lnww"]
+
+[node name="Ads" type="Control" unique_id=1521385572]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kirea")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2049967303]
+layout_mode = 0
+offset_left = -360.0
+offset_top = -540.0
+offset_right = 360.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1832540257]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -322.0
+offset_top = -229.0
+offset_right = 318.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stream = ExtResource("2_rywbf")
+
+[node name="BackBtn" type="TextureButton" parent="." unique_id=1950928617]
+layout_mode = 0
+offset_left = -330.0
+offset_top = -510.0
+offset_right = -270.0
+offset_bottom = -450.0
+texture_normal = ExtResource("3_gom0h")
+texture_pressed = ExtResource("3_gom0h")
+texture_hover = ExtResource("3_gom0h")
+
+[node name="Mute" type="TextureButton" parent="." unique_id=1569136245]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 460.0
+offset_right = 326.0
+offset_bottom = 508.0
+toggle_mode = true
+texture_normal = ExtResource("5_1lnww")
+texture_pressed = ExtResource("4_gom0h")
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=204622706]
+clip_contents = false
+layout_mode = 0
+offset_left = -317.0
+offset_top = -498.0
+offset_right = -181.0
+offset_bottom = -464.0
+mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "15s Remain"
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="pressed" from="BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="toggled" from="Mute" to="." method="_on_mute_toggled"]

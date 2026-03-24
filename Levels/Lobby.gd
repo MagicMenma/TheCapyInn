@@ -4,6 +4,7 @@ extends Control
 @onready var lobby: Control = $Lobby
 @onready var edit: Control = $Edit
 @onready var collection_ui: Control = $Edit/CollectionUi
+@onready var stamina_label: Label = $Lobby/StartGame/Stamina
 
 
 @onready var placement_layer: Control = $PlacementLayer # 用于接收点击
@@ -15,6 +16,8 @@ func _ready() -> void:
 	var saved_animals = SaveManager.load_placed_animals()
 	for data in saved_animals:
 		_spawn_saved_animal(data)
+	
+	_update_stamina_ui()
 	
 	GameManager.entered_placement_mode.connect(_on_placement_started)
 
@@ -99,9 +102,7 @@ func _confirm_placement():
 		new_animal.add_to_group("animalsPLB")
 		# 6. 更新库存并结束放置模式
 		GameManager.unlocked_animals[GameManager.current_placing_animal_id]["count"] -= 1
-		# 调用独立脚本进行保存
-		var all_placed = get_tree().get_nodes_in_group("animalsPLB")
-		SaveManager.save_placed_animals(all_placed)
+		SaveManager.save_animals_only()
 		
 		collection_ui.show_menu_smooth()
 	
@@ -125,6 +126,17 @@ func _set_animals_interactive(active: bool):
 			# MOUSE_FILTER_IGNORE 代表完全忽略鼠标，点击会穿透到下方
 			animal.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
+func _update_stamina_ui():
+	var stamina = GameManager.daily_stamina
+	match stamina:
+		1:
+			stamina_label.text = "Last Voucher: 🎫"
+		0:
+			
+			stamina_label.text = "Run Out of Voucher 🎫\nWatch Ads to Play"
+		_:
+			# 这里的 _ 是默认情况，以防体力超过2点
+			stamina_label.text = "Vouchers Left: " + "🎫".repeat(stamina)
 
 #各个主要功能视图设置
 func _lobby():
@@ -147,4 +159,8 @@ func _on_edit_pressed() -> void:
 	_edit()
 
 func _on_start_game_pressed() -> void:
-	get_tree().change_scene_to_file("res://Levels/Board.tscn")
+	if(GameManager.daily_stamina > 0):
+		GameManager.daily_stamina -= 1;
+		get_tree().change_scene_to_file("res://Levels/Board.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Levels/Ads.tscn")

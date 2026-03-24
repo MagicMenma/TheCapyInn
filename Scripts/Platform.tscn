@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cccss10al4gie"]
 
-[ext_resource type="Texture2D" uid="uid://diutpnt7g4nwb" path="res://Texture/BoardBackground_Spring.png" id="1_nkam5"]
+[ext_resource type="Texture2D" uid="uid://ddyyv5boipoqg" path="res://Texture/Onsen.png" id="1_kjout"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkam5"]
 size = Vector2(105.55533, 130.5516)
@@ -14,8 +14,9 @@ size = Vector2(229.54456, 104.70473)
 [node name="Platform" type="Node2D" unique_id=380902931]
 
 [node name="HotSpring" type="Sprite2D" parent="." unique_id=862498675]
-scale = Vector2(0.86658657, 0.86658657)
-texture = ExtResource("1_nkam5")
+position = Vector2(-2, 0)
+scale = Vector2(0.42747647, 0.42747638)
+texture = ExtResource("1_kjout")
 centered = false
 
 [node name="Base" type="StaticBody2D" parent="." unique_id=13338524]

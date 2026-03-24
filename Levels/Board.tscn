@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://desbqrwppwlyw" path="res://Animals/Bathing/Dog.tscn" id="7_dwlst"]
 [ext_resource type="PackedScene" uid="uid://o27oxm01rcwb" path="res://Animals/AnimalSpawner.tscn" id="7_ppong"]
 [ext_resource type="PackedScene" uid="uid://b681wblh574ft" path="res://Scripts/GameOverArea.tscn" id="8_7f1ut"]
+[ext_resource type="PackedScene" uid="uid://be3qw6jhtryjk" path="res://Animals/Bathing/Capybara.tscn" id="8_mte74"]
 [ext_resource type="PackedScene" uid="uid://cihlanfwqllx6" path="res://Scripts/GameOverInterface.tscn" id="8_vidin"]
-[ext_resource type="PackedScene" uid="uid://er8awv7q8l4v" path="res://Animals/Bathing/Bear.tscn" id="9_mte74"]
+[ext_resource type="PackedScene" uid="uid://cetn7v0s4hiws" path="res://Animals/Bathing/Cat.tscn" id="9_mk38a"]
 [ext_resource type="Texture2D" uid="uid://bv5dyffkf1lt5" path="res://Texture/Noren.png" id="10_dwlst"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m0gry"]
@@ -83,8 +84,14 @@ position = Vector2(-340, -859)
 
 [node name="AnimalSpawner" parent="MainCanvas" unique_id=6480400 instance=ExtResource("7_ppong")]
 position = Vector2(22, -582)
-animal_scenes = Array[PackedScene]([ExtResource("7_dwlst"), ExtResource("9_mte74")])
+animal_scenes = Array[PackedScene]([ExtResource("7_dwlst"), ExtResource("8_mte74"), ExtResource("9_mk38a")])
 min_interval = 0.15
+
+[node name="ColorRect" type="ColorRect" parent="MainCanvas/AnimalSpawner" unique_id=700549345]
+offset_left = -363.0
+offset_top = 267.0
+offset_right = -300.0
+offset_bottom = 288.0
 
 [node name="GameOverInterface" parent="MainCanvas" unique_id=146784199 instance=ExtResource("8_vidin")]
 visible = false
