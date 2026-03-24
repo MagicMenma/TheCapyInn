@@ -39,6 +39,16 @@ func _on_game_over_area_overflow_occurred() -> void:
 func _update_score_display(new_score):
 	if score_label:
 		score_label.text = "$$$: " + str(new_score)
+
+		var tween = create_tween()
+		# 按顺序执行tween
+		tween.set_parallel(false)
+		tween.tween_property(score_label, "scale", Vector2(1.5, 1.5), 0.05)\
+			.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		tween.tween_property(score_label, "scale", Vector2(1.0, 1.0), 0.15)\
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	
+	
 # 当信号触发时执行
 func _on_game_manager_score_changed(new_score):
 	_update_score_display(new_score)

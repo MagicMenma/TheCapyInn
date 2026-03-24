@@ -33,3 +33,10 @@ func selected():
 func deselected():
 	is_selected = false
 	bathing.material.set_shader_parameter("active", false)
+
+
+func _on_mouse_entered() -> void:
+	create_tween().tween_property($".", "scale", Vector2(1.05, 1.05), 0.1)
+
+func _on_mouse_exited() -> void:
+	create_tween().tween_property($".", "scale", Vector2.ONE, 0.1)

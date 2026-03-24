@@ -72,7 +72,9 @@ offset_right = 20.0
 offset_bottom = 520.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(62, 21)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_vidin")
 theme_override_font_sizes/font_size = 40
 text = "Score: 0"
@@ -86,12 +88,6 @@ position = Vector2(-340, -859)
 position = Vector2(22, -582)
 animal_scenes = Array[PackedScene]([ExtResource("7_dwlst"), ExtResource("8_mte74"), ExtResource("9_mk38a")])
 min_interval = 0.15
-
-[node name="ColorRect" type="ColorRect" parent="MainCanvas/AnimalSpawner" unique_id=700549345]
-offset_left = -363.0
-offset_top = 267.0
-offset_right = -300.0
-offset_bottom = 288.0
 
 [node name="GameOverInterface" parent="MainCanvas" unique_id=146784199 instance=ExtResource("8_vidin")]
 visible = false

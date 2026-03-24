@@ -2,15 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://ddyyv5boipoqg" path="res://Texture/Onsen.png" id="1_kjout"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkam5"]
-size = Vector2(105.55533, 130.5516)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eifws"]
-size = Vector2(229.54453, 103.01596)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrrci"]
-size = Vector2(229.54456, 104.70473)
-
 [node name="Platform" type="Node2D" unique_id=380902931]
 
 [node name="HotSpring" type="Sprite2D" parent="." unique_id=862498675]
@@ -23,25 +14,8 @@ centered = false
 position = Vector2(359.99997, 1044)
 scale = Vector2(5.646328, 0.5921413)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Base" unique_id=355941940]
-position = Vector2(3.8146973e-06, -2.2757568)
-scale = Vector2(0.9999999, 1)
-shape = SubResource("RectangleShape2D_nkam5")
-
-[node name="SideRight" type="StaticBody2D" parent="." unique_id=27005348]
-position = Vector2(758, 546)
-rotation = -1.5707964
-scale = Vector2(8.366327, 0.5921413)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SideRight" unique_id=995019957]
-position = Vector2(50.772312, -113.99304)
-shape = SubResource("RectangleShape2D_eifws")
-
-[node name="SideLeft" type="StaticBody2D" parent="." unique_id=2020132607]
-position = Vector2(-37.999996, 546)
-rotation = -1.5707964
-scale = Vector2(8.366327, 0.5921413)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SideLeft" unique_id=847712568]
-position = Vector2(50.77228, 114.83745)
-shape = SubResource("RectangleShape2D_qrrci")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Base" unique_id=1887541917]
+visible = false
+position = Vector2(-63.758244, -1763.0928)
+scale = Vector2(0.17710625, 1.6887861)
+polygon = PackedVector2Array(-1.0000306, -838, -3.000031, 1084, 722, 1081, 720, -835, 658, -831, 617, 23, 631, 59, 638, 86, 617, 116, 611, 159, 627, 199, 624, 280, 641, 313, 617, 398, 627, 437, 625, 471, 635, 500, 618, 584, 622, 628, 644, 683, 624, 716, 618, 780, 643, 865, 599, 908, 600, 946, 575, 982, 166.99998, 983, 131.99998, 960, 91.99998, 913, 92.99998, 847, 98.999985, 826, 99.999985, 773, 81.99998, 731, 97.999985, 701, 91.99998, 673, 99.999985, 649, 100.999985, 590, 81.99998, 545, 95.999985, 519, 108.999985, 463, 103.999985, 432, 93.99998, 367, 94.99998, 251, 112.999985, 212, 86.99998, 138, 93.99998, 1, 60.999977, -838)
