@@ -82,10 +82,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOverArea" parent="MainCanvas" unique_id=1590744256 instance=ExtResource("8_7f1ut")]
-position = Vector2(-340, -859)
+position = Vector2(-340, -520)
 
 [node name="AnimalSpawner" parent="MainCanvas" unique_id=6480400 instance=ExtResource("7_ppong")]
-position = Vector2(22, -582)
+position = Vector2(22, -799)
 animal_scenes = Array[PackedScene]([ExtResource("7_dwlst"), ExtResource("8_mte74"), ExtResource("9_mk38a")])
 min_interval = 0.15
 

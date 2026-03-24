@@ -43,6 +43,7 @@ size = Vector2(184, 140)
 [node name="AnimalBase" type="RigidBody2D" unique_id=1328516180]
 input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_peu82")
+gravity_scale = 0.8
 can_sleep = false
 lock_rotation = true
 linear_damp = 4.0

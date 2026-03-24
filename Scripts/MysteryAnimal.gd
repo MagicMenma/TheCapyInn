@@ -57,7 +57,7 @@ func unlockNewAnimal():
 	
 	await get_tree().create_timer(2.5).timeout
 	label.visible = true
-	label.text = "[shake rate=20.0 level=10]" + animal_id.capitalize() + "[/shake]" + " Unlocked!"
+	label.text = "[shake rate=20.0 level=10][u]" + animal_id.capitalize() + "[/u][/shake] Unlocked!"
 	
 	GameManager.daily_unlock = true
 

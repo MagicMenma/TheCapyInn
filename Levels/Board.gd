@@ -3,6 +3,7 @@ extends Control
 @onready var game_over_ui = $MainCanvas/GameOverInterface
 @onready var score_label = $MainCanvas/ScoreLabel
 @onready var noren: Panel = $Noren
+@onready var animal_spawner: Node2D = $MainCanvas/AnimalSpawner
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
