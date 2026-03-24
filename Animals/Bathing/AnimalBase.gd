@@ -36,7 +36,7 @@ func deselected():
 
 
 func _on_mouse_entered() -> void:
-	create_tween().tween_property($".", "scale", Vector2(1.05, 1.05), 0.1)
+	create_tween().tween_property(bathing, "scale", Vector2(0.66, 0.66), 0.1)
 
 func _on_mouse_exited() -> void:
-	create_tween().tween_property($".", "scale", Vector2.ONE, 0.1)
+	create_tween().tween_property(bathing, "scale", Vector2(0.616, 0.616), 0.1)

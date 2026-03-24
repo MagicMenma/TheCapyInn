@@ -33,7 +33,7 @@ func _on_tick():
 
 func _update_label():
 	# 使用格式化字符串，安全且整洁
-	label.text = "[center]%d s Remain[/center]" % current_time
+	label.text = "[center]%ds Remain[/center]" % current_time
 
 func _on_ad_finished():
 	back_btn.visible = true
