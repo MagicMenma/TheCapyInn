@@ -6,12 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://cb5sp3kuwlmnc" path="res://Texture/Tutorial/Highlight2.png" id="3_8lojk"]
 [ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="3_xssxf"]
 [ext_resource type="Texture2D" uid="uid://bbqw7e0i2ojhb" path="res://Texture/Animals/Boss.png" id="4_6531g"]
+[ext_resource type="Texture2D" uid="uid://11ohgr11oflu" path="res://Texture/Icon/Play.png" id="7_1vnl7"]
+[ext_resource type="Texture2D" uid="uid://d3qllgxvde1ef" path="res://Texture/Icon/Pause.png" id="8_5r2jn"]
 
 [node name="TutorialOverlay" type="Control" unique_id=568204668]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -540.0
+offset_right = -360.0
+offset_bottom = -540.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -67,6 +75,40 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Boss" type="Sprite2D" parent="Control" unique_id=1986638676]
-position = Vector2(574, 920.00006)
+position = Vector2(595, 920.00006)
 scale = Vector2(0.6250001, 0.6289063)
 texture = ExtResource("4_6531g")
+
+[node name="AutoToggle" type="TextureButton" parent="." unique_id=1351110272]
+layout_mode = 0
+offset_left = 542.0
+offset_top = 28.0
+offset_right = 590.0
+offset_bottom = 76.0
+toggle_mode = true
+texture_normal = ExtResource("7_1vnl7")
+texture_pressed = ExtResource("8_5r2jn")
+
+[node name="AutoToggleText" type="RichTextLabel" parent="AutoToggle" unique_id=848105077]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0464286
+anchor_top = -0.88
+anchor_right = 1.3854288
+anchor_bottom = -0.88
+offset_left = 6.771454
+offset_top = 52.23999
+offset_right = 89.49945
+offset_bottom = 85.24
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 17)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xssxf")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "Auto"
+fit_content = true
+vertical_alignment = 1
+
+[connection signal="toggled" from="AutoToggle" to="." method="_on_auto_toggle_toggled"]

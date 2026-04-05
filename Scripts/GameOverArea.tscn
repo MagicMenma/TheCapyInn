@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://cid5wn50vqgji" path="res://Scripts/GameOverArea.gd" id="1_ogn1w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqpnx"]
-size = Vector2(596, 13)
+size = Vector2(719, 312)
 
 [node name="GameOverArea" type="Area2D" unique_id=2078113873]
 script = ExtResource("1_ogn1w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=557756743]
-position = Vector2(361, -6.5)
+position = Vector2(359.5, -60)
 shape = SubResource("RectangleShape2D_tqpnx")
 
 [node name="Label" type="Label" parent="." unique_id=640455224]
@@ -18,10 +18,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 297.0
-offset_top = -43.0
-offset_right = 424.0
-offset_bottom = -20.0
+offset_left = 233.5
+offset_top = -265.0
+offset_right = 487.5
+offset_bottom = -220.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

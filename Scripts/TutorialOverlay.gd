@@ -4,8 +4,14 @@ extends Control
 @onready var highlight_1: Sprite2D = $Highlight1
 @onready var highlight_2: Sprite2D = $Highlight2
 @onready var speech: RichTextLabel = $Control/Speech
+@onready var auto_toggle_text: RichTextLabel = $AutoToggle/AutoToggleText
+
 
 var is_tutorial_2_triggered: bool = false
+
+var is_auto_mode: bool = false # 默认为手动点击模式
+var is_typing: bool = false
+var current_tween: Tween = null
 
 # 1. 教程对话内容列表
 var tutorial_1: Array[String] = [
@@ -62,18 +68,43 @@ func _start_next_line():
 func _display_line(text_content: String):
 	speech.text = text_content
 	speech.visible_ratio = 0
+	is_typing = true
+	
+	if current_tween: current_tween.kill() # 清除旧动画
+	current_tween = create_tween()
 	
 	var duration = text_content.length() * 0.05
-	var tween = create_tween()
-	tween.tween_property(speech, "visible_ratio", 1.0, duration)
+	current_tween.tween_property(speech, "visible_ratio", 1.0, duration)
 	
-	tween.finished.connect(func():
-		await get_tree().create_timer(2.0).timeout
-		current_line_index += 1
-		_start_next_line()
+	current_tween.finished.connect(func():
+		is_typing = false
+		# 如果是自动模式，等待后自动下一行
+		if is_auto_mode:
+			await get_tree().create_timer(2.0).timeout
+			# 再次检查模式，防止等待期间玩家切换了模式
+			if is_auto_mode: _next_step()
 	)
 
-# --- 这里是你的自定义逻辑控制区 ---
+# 处理“下一步”
+func _next_step():
+	if is_typing:
+		# 状态 1：正在打字 -> 瞬间显示全文
+		if current_tween: current_tween.kill()
+		speech.visible_ratio = 1.0
+		is_typing = false
+	else:
+		# 状态 2：已经显示全文 -> 播下一句
+		current_line_index += 1
+		_start_next_line()
+
+func _input(event):
+	# 只有在教程激活且不是自动模式时，才响应点击（或者自动模式下允许手动加速）
+	if event.is_action_pressed("mouse_left"):
+		# 如果当前正在播放动画，或者等待下一句，点击都会触发 _next_step
+		_next_step()
+
+
+# --- 自定义逻辑控制区 ---
 
 func _on_tutorial_1_finished():
 	self.mouse_filter = Control.MOUSE_FILTER_PASS
@@ -88,9 +119,21 @@ func _on_tutorial_2_finished():
 
 func _on_tutorial_3_finished():
 	GameManager.toturial_state = 1
+	GameManager.player_money = 100
+	GameManager.current_score = 0
 	get_tree().call_deferred("change_scene_to_file", "res://Levels/Lobby.tscn")
 
 func _end_tutorial():
 	var fade_tween = create_tween()
 	fade_tween.tween_property(self, "modulate:a", 0, 0.5)
 	fade_tween.finished.connect(queue_free)
+
+
+func _on_auto_toggle_toggled(toggled_on: bool) -> void:
+	is_auto_mode = toggled_on
+	if is_auto_mode:
+		auto_toggle_text.text = "Playing"
+		if not is_typing:
+			_next_step()
+	else:
+		auto_toggle_text.text = "Auto"

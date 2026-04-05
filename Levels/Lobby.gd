@@ -10,6 +10,7 @@ extends Control
 @onready var stamina_counter: Label = $Lobby/TopPlayerInfo/StaminaCounter
 @onready var player_money: RichTextLabel = $Lobby/TopPlayerInfo/PlayerMoney
 @onready var back: Button = $Edit/Back
+@onready var tutorial_overlay: Control = $TutorialOverlay
 
 
 @onready var placement_layer: Control = $PlacementLayer # 用于接收点击
@@ -27,6 +28,10 @@ func _ready() -> void:
 	GameManager.entered_placement_mode.connect(_on_placement_started)
 	
 	player_money.text = str(GameManager.player_money)
+	
+	#if GameManager.toturial_state == 1:
+		#tutorial_overlay.visible = true
+
 
 func _process(_delta):
 	# 让预览跟随鼠标

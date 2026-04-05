@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cccss10al4gie" path="res://Scripts/Platform.tscn" id="3_l8cg0"]
 [ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="4_y5txs"]
 [ext_resource type="PackedScene" uid="uid://b681wblh574ft" path="res://Scripts/GameOverArea.tscn" id="5_4mdxd"]
-[ext_resource type="PackedScene" uid="uid://be3qw6jhtryjk" path="res://Animals/Bathing/Capybara.tscn" id="8_ty05b"]
 [ext_resource type="PackedScene" uid="uid://bupwnagggnma3" path="res://Scripts/TutorialOverlay.tscn" id="9_icfuw"]
 [ext_resource type="PackedScene" uid="uid://cihlanfwqllx6" path="res://Scripts/GameOverInterface.tscn" id="10_xdigg"]
 [ext_resource type="Texture2D" uid="uid://bv5dyffkf1lt5" path="res://Texture/Noren.png" id="11_tuqlc"]
@@ -110,17 +109,10 @@ grow_horizontal = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_mte74")
 
-[node name="Capybara" parent="." unique_id=1328516180 instance=ExtResource("8_ty05b")]
-position = Vector2(227, 385)
-gravity_scale = 0.0
-
-[node name="Capybara2" parent="." unique_id=1131813870 instance=ExtResource("8_ty05b")]
-position = Vector2(435, 241)
-gravity_scale = 0.0
-
-[node name="Capybara3" parent="." unique_id=555265537 instance=ExtResource("8_ty05b")]
-position = Vector2(482, 524)
-gravity_scale = 0.0
+[node name="CapybaraLayer" type="Control" parent="." unique_id=253963586]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="TutorialOverlay" parent="." unique_id=568204668 instance=ExtResource("9_icfuw")]
 layout_mode = 1

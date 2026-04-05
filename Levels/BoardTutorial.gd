@@ -5,6 +5,8 @@ extends Control
 @onready var noren: Panel = $Noren
 @onready var tutorial_overlay: Control = $TutorialOverlay
 
+const CAPYBARA_SCENE = preload("res://Animals/Bathing/Capybara.tscn") # 确认你的路径
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.game_over = false
@@ -12,6 +14,27 @@ func _ready() -> void:
 	GameManager.score_changed.connect(_on_game_manager_score_changed)
 	
 	toggle_noren()
+	_generate_capybara()
+
+func _generate_capybara():
+	var screen_rect = get_viewport().get_visible_rect()
+	var sw = (screen_rect.size.x - 720) / 2 # 宽屏幕修正值
+	
+	var default_capybara = [
+		{ "type": "Capybara", "pos_x": sw + 227, "pos_y": 385 },
+		{ "type": "Capybara", "pos_x": sw + 482, "pos_y": 524 },
+		{ "type": "Capybara", "pos_x": sw + 435, "pos_y": 241 }
+	]
+
+	for data in default_capybara:
+		# 1. 实例化
+		var new_capy = CAPYBARA_SCENE.instantiate()
+		# 2. 将它添加到场景树中
+		$CapybaraLayer.add_child(new_capy)
+		new_capy.freeze = true
+		# 3. 设置位置
+		# 必须在 add_child 之后或同时设置坐标
+		new_capy.global_position = Vector2(data["pos_x"], data["pos_y"])
 
 
 func toggle_noren():

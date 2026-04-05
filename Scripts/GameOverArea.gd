@@ -37,7 +37,7 @@ func _on_game_over_triggered():
 			# --- 核心判定逻辑 ---
 			# 1. 检查线速度 (linear_velocity) 的长度
 			# 2. 如果速度小于一个很小的值（例如 10 像素/秒），说明它堆积在这里了
-			if body.linear_velocity.length() < 10.0:
+			if body.linear_velocity.length() < 8.0:
 				is_stable_overflow = true
 				break
 	

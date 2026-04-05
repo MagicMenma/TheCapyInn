@@ -5,7 +5,7 @@ signal score_changed(new_score) # 定义信号，用于更新 UI
 signal entered_placement_mode
 
 # 教程状态器 0-无教程； 1-完成游戏； 2-完成布置； 3-完成商城
-var toturial_state: int = 3
+var toturial_state: int = 0
 
 var current_score: int = 0
 
