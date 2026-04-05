@@ -1,27 +1,25 @@
-[gd_scene format=3 uid="uid://dj8sb6153pbye"]
+[gd_scene format=3 uid="uid://bvybfgv3dncg4"]
 
-[ext_resource type="Script" uid="uid://c6rsy31s4ooeh" path="res://Levels/Board.gd" id="1_7f1ut"]
-[ext_resource type="Texture2D" uid="uid://cvfibty0q0xay" path="res://Texture/theArtofWebcraft.png" id="1_y0vwi"]
-[ext_resource type="PackedScene" uid="uid://cccss10al4gie" path="res://Scripts/Platform.tscn" id="4_lwha7"]
-[ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="4_vidin"]
-[ext_resource type="PackedScene" uid="uid://desbqrwppwlyw" path="res://Animals/Bathing/Dog.tscn" id="7_dwlst"]
-[ext_resource type="PackedScene" uid="uid://o27oxm01rcwb" path="res://Animals/AnimalSpawner.tscn" id="7_ppong"]
-[ext_resource type="PackedScene" uid="uid://b681wblh574ft" path="res://Scripts/GameOverArea.tscn" id="8_7f1ut"]
-[ext_resource type="PackedScene" uid="uid://be3qw6jhtryjk" path="res://Animals/Bathing/Capybara.tscn" id="8_mte74"]
-[ext_resource type="PackedScene" uid="uid://cihlanfwqllx6" path="res://Scripts/GameOverInterface.tscn" id="8_vidin"]
-[ext_resource type="PackedScene" uid="uid://cetn7v0s4hiws" path="res://Animals/Bathing/Cat.tscn" id="9_mk38a"]
-[ext_resource type="Texture2D" uid="uid://bv5dyffkf1lt5" path="res://Texture/Noren.png" id="10_dwlst"]
+[ext_resource type="Script" uid="uid://clmtdbom4yow7" path="res://Levels/BoardTutorial.gd" id="1_0fc13"]
+[ext_resource type="Texture2D" uid="uid://cvfibty0q0xay" path="res://Texture/theArtofWebcraft.png" id="2_iwg8b"]
+[ext_resource type="PackedScene" uid="uid://cccss10al4gie" path="res://Scripts/Platform.tscn" id="3_l8cg0"]
+[ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="4_y5txs"]
+[ext_resource type="PackedScene" uid="uid://b681wblh574ft" path="res://Scripts/GameOverArea.tscn" id="5_4mdxd"]
+[ext_resource type="PackedScene" uid="uid://be3qw6jhtryjk" path="res://Animals/Bathing/Capybara.tscn" id="8_ty05b"]
+[ext_resource type="PackedScene" uid="uid://bupwnagggnma3" path="res://Scripts/TutorialOverlay.tscn" id="9_icfuw"]
+[ext_resource type="PackedScene" uid="uid://cihlanfwqllx6" path="res://Scripts/GameOverInterface.tscn" id="10_xdigg"]
+[ext_resource type="Texture2D" uid="uid://bv5dyffkf1lt5" path="res://Texture/Noren.png" id="11_tuqlc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m0gry"]
-texture = ExtResource("1_y0vwi")
+texture = ExtResource("2_iwg8b")
 modulate_color = Color(0.69965345, 0.69965345, 0.69965345, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mte74"]
-texture = ExtResource("10_dwlst")
+texture = ExtResource("11_tuqlc")
 axis_stretch_vertical = 2
 modulate_color = Color(0.69965345, 0.69965345, 0.69965345, 1)
 
-[node name="Board" type="Control" unique_id=677469318]
+[node name="BoardTutorial" type="Control" unique_id=677469318]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_7f1ut")
+script = ExtResource("1_0fc13")
 
 [node name="OverrallBackground" type="Panel" parent="." unique_id=1566793151]
 layout_mode = 1
@@ -56,7 +54,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Platform" parent="MainCanvas" unique_id=380902931 instance=ExtResource("4_lwha7")]
+[node name="Platform" parent="MainCanvas" unique_id=380902931 instance=ExtResource("3_l8cg0")]
 position = Vector2(-340, -520)
 
 [node name="ScoreLabel" type="Label" parent="MainCanvas" unique_id=684294229]
@@ -75,21 +73,16 @@ grow_vertical = 2
 pivot_offset = Vector2(62, 21)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_vidin")
+theme_override_fonts/font = ExtResource("4_y5txs")
 theme_override_font_sizes/font_size = 40
 text = "$$$: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameOverArea" parent="MainCanvas" unique_id=1590744256 instance=ExtResource("8_7f1ut")]
+[node name="GameOverArea" parent="MainCanvas" unique_id=1590744256 instance=ExtResource("5_4mdxd")]
 position = Vector2(-340, -520)
 
-[node name="AnimalSpawner" parent="MainCanvas" unique_id=6480400 instance=ExtResource("7_ppong")]
-position = Vector2(22, -799)
-animal_scenes = Array[PackedScene]([ExtResource("7_dwlst"), ExtResource("8_mte74"), ExtResource("9_mk38a")])
-min_interval = 0.15
-
-[node name="GameOverInterface" parent="MainCanvas" unique_id=146784199 instance=ExtResource("8_vidin")]
+[node name="GameOverInterface" parent="MainCanvas" unique_id=146784199 instance=ExtResource("10_xdigg")]
 visible = false
 layout_mode = 1
 anchors_preset = 0
@@ -102,10 +95,6 @@ offset_bottom = 560.0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 1
-
-[node name="DifficultyTimer" type="Timer" parent="." unique_id=107129534]
-wait_time = 5.0
-autostart = true
 
 [node name="Noren" type="Panel" parent="." unique_id=1973488014]
 clip_contents = true
@@ -121,5 +110,19 @@ grow_horizontal = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_mte74")
 
+[node name="Capybara" parent="." unique_id=1328516180 instance=ExtResource("8_ty05b")]
+position = Vector2(227, 385)
+gravity_scale = 0.0
+
+[node name="Capybara2" parent="." unique_id=1131813870 instance=ExtResource("8_ty05b")]
+position = Vector2(435, 241)
+gravity_scale = 0.0
+
+[node name="Capybara3" parent="." unique_id=555265537 instance=ExtResource("8_ty05b")]
+position = Vector2(482, 524)
+gravity_scale = 0.0
+
+[node name="TutorialOverlay" parent="." unique_id=568204668 instance=ExtResource("9_icfuw")]
+layout_mode = 1
+
 [connection signal="overflow_occurred" from="MainCanvas/GameOverArea" to="." method="_on_game_over_area_overflow_occurred"]
-[connection signal="timeout" from="DifficultyTimer" to="MainCanvas/AnimalSpawner" method="_on_difficulty_timer_timeout"]

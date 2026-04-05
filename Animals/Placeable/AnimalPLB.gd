@@ -47,6 +47,10 @@ func _no_placeable():
 	img.material.set_shader_parameter("active", true)
 	img.material.set_shader_parameter("line_color", Color(0.836, 0.372, 0.372, 1.0))
 
+func _on_bin():
+	img.material.set_shader_parameter("active", true)
+	img.material.set_shader_parameter("line_color", Color(0.97, 0.782, 0.0, 1.0))
+
 func _is_placed():
 	img.material.set_shader_parameter("active", false)
 

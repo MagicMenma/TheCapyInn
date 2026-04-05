@@ -30,6 +30,8 @@ func _play_score_animation():
 	var added_val = GameManager.current_score
 	var end_val = start_val + added_val
 	
+	GameManager.player_money += added_val
+	
 	score_this_round.text = "+ $" + str(added_val)
 	
 	# 先把进度条和文字设为起始状态
@@ -68,7 +70,6 @@ func _update_label_text(current_animated_val: int):
 # 结算每日奖励
 func _check_total_score():
 	GameManager.daily_score = GameManager.daily_score + GameManager.current_score
-	print(GameManager.daily_score)
 	if(GameManager.daily_score >= GameManager.daily_target_score):
 		if(!GameManager.daily_unlock):
 			await get_tree().create_timer(4).timeout

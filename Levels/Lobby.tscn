@@ -7,6 +7,9 @@
 [ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="4_ueq3s"]
 [ext_resource type="PackedScene" uid="uid://c7m7vslqutp4u" path="res://Collection/Col_UI.tscn" id="5_1tyf7"]
 [ext_resource type="Texture2D" uid="uid://d756bsfok20l" path="res://Texture/NorenMainPage.png" id="6_r50g8"]
+[ext_resource type="Texture2D" uid="uid://x036jpjm8pk5" path="res://Texture/Icon/MoneyBag.png" id="7_1tyf7"]
+[ext_resource type="Texture2D" uid="uid://dih7l8vb25x2e" path="res://Texture/icon.png" id="7_2uni1"]
+[ext_resource type="Texture2D" uid="uid://c1hipg6ap1nuv" path="res://Texture/Icon/Voucher.png" id="9_xrkt0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m0gry"]
 texture = ExtResource("2_ueq3s")
@@ -135,6 +138,7 @@ position = Vector2(0, 833)
 polygon = PackedVector2Array(-58, -896, -54, 1746, -3431, 1720, -3417, -2324, 4186, -2340, 4259, 1779, -71, 1746, -53, 300, 799, 306, 800, -898)
 
 [node name="Lobby" type="Control" parent="." unique_id=1191138100]
+visible = false
 z_index = 10
 layout_mode = 1
 anchors_preset = 8
@@ -164,10 +168,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 181.76892
-offset_top = 901.0
-offset_right = 497.26892
-offset_bottom = 1007.0
+offset_left = 183.0
+offset_top = 888.0
+offset_right = 498.5
+offset_bottom = 994.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
@@ -183,28 +187,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_pld3d")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_pld3d")
 text = "Start Soaking"
 
-[node name="Stamina" type="Label" parent="Lobby/StartGame" unique_id=591746468]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -111.01892
-offset_top = -117.5
-offset_right = 111.98108
-offset_bottom = -60.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_ueq3s")
-theme_override_font_sizes/font_size = 32
-text = "Voucher: 🎫"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="Edit" type="Button" parent="Lobby" unique_id=1582065317]
+[node name="Build" type="Button" parent="Lobby" unique_id=1582065317]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -212,9 +195,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 4.0
-offset_top = 901.0
+offset_top = 888.0
 offset_right = 157.26892
-offset_bottom = 1007.0
+offset_bottom = 994.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
@@ -228,34 +211,147 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_21xeq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jyq2n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pld3d")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_pld3d")
-text = "Edit"
+text = "Build"
 
-[node name="NorenMainPage" type="Sprite2D" parent="Lobby" unique_id=860329256]
-position = Vector2(359, 100)
-texture = ExtResource("6_r50g8")
-
-[node name="Title" type="Label" parent="Lobby" unique_id=1983058230]
+[node name="Shop" type="Button" parent="Lobby" unique_id=1014042658]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 86.5
-offset_top = 101.0
-offset_right = 593.5
-offset_bottom = 193.0
+offset_left = 525.0
+offset_top = 888.0
+offset_right = 678.2689
+offset_bottom = 994.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0.109375, 0.109375, 0.109375, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
+theme_override_colors/font_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
+theme_override_colors/font_focus_color = Color(0.15127617, 0.15127602, 0.15127611, 1)
+theme_override_colors/font_pressed_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
+theme_override_colors/font_hover_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.23392498, 0.23392567, 0.23392522, 1)
 theme_override_fonts/font = ExtResource("4_ueq3s")
-theme_override_font_sizes/font_size = 101
-text = "The Capy Inn"
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_21xeq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jyq2n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pld3d")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_pld3d")
+text = "Shop"
+
+[node name="TopPlayerInfo" type="Control" parent="Lobby" unique_id=1850836265]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="NorenMainPage" type="Sprite2D" parent="Lobby/TopPlayerInfo" unique_id=860329256]
+position = Vector2(359, 54)
+texture = ExtResource("6_r50g8")
+
+[node name="Icon" type="Sprite2D" parent="Lobby/TopPlayerInfo" unique_id=788370116]
+position = Vector2(58, 95)
+scale = Vector2(0.08043345, 0.08043345)
+texture = ExtResource("7_2uni1")
+
+[node name="PlayerName" type="RichTextLabel" parent="Lobby/TopPlayerInfo" unique_id=1285584412]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0464286
+anchor_top = -0.88
+anchor_right = 1.3854288
+anchor_bottom = -0.88
+offset_left = 74.14285
+offset_top = 111.2
+offset_right = 219.58286
+offset_bottom = 144.2
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 17)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_ueq3s")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "EpicGamer"
+fit_content = true
+vertical_alignment = 1
+
+[node name="MoneyBag" type="Sprite2D" parent="Lobby/TopPlayerInfo" unique_id=1984365216]
+position = Vector2(392.75, 91)
+scale = Vector2(0.18554688, 0.18554688)
+texture = ExtResource("7_1tyf7")
+
+[node name="PlayerMoney" type="RichTextLabel" parent="Lobby/TopPlayerInfo" unique_id=505482069]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0464286
+anchor_top = -0.88
+anchor_right = 1.3854288
+anchor_bottom = -0.88
+offset_left = 378.89285
+offset_top = 111.2
+offset_right = 472.58286
+offset_bottom = 144.2
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 17)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_ueq3s")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "5000"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Voucher" type="Sprite2D" parent="Lobby/TopPlayerInfo" unique_id=1008811966]
+position = Vector2(578.25, 92)
+scale = Vector2(0.2519531, 0.2519531)
+texture = ExtResource("9_xrkt0")
+
+[node name="Stamina" type="Label" parent="Lobby/TopPlayerInfo" unique_id=591746468]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 579.25
+offset_top = 48.5
+offset_right = 686.25
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ueq3s")
+theme_override_font_sizes/font_size = 36
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaminaCounter" type="Label" parent="Lobby/TopPlayerInfo" unique_id=247317069]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 579.25
+offset_top = 80.0
+offset_right = 686.25
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ueq3s")
+theme_override_font_sizes/font_size = 20
+text = "10:50:20"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Edit" type="Control" parent="." unique_id=2047029256]
-visible = false
 z_index = 10
 layout_mode = 1
 anchors_preset = 8
@@ -308,5 +404,6 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_q3d7l")
 text = "<"
 
 [connection signal="pressed" from="Lobby/StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="Lobby/Edit" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="Lobby/Build" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="Lobby/Shop" to="." method="_on_shop_pressed"]
 [connection signal="pressed" from="Edit/Back" to="." method="_on_back_pressed"]

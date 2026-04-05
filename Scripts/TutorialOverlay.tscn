@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bupwnagggnma3"]
+
+[ext_resource type="Texture2D" uid="uid://j5mqlijvdnn2" path="res://Texture/Icon/SpeechBubble.png" id="1_h2ivm"]
+[ext_resource type="Script" uid="uid://cihnqtj70vogo" path="res://Scripts/TutorialOverlay.gd" id="1_qbeim"]
+[ext_resource type="Texture2D" uid="uid://d0ruqmtxvocky" path="res://Texture/Tutorial/Highlight1.png" id="2_kwt3b"]
+[ext_resource type="Texture2D" uid="uid://cb5sp3kuwlmnc" path="res://Texture/Tutorial/Highlight2.png" id="3_8lojk"]
+[ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="3_xssxf"]
+[ext_resource type="Texture2D" uid="uid://bbqw7e0i2ojhb" path="res://Texture/Animals/Boss.png" id="4_6531g"]
+
+[node name="TutorialOverlay" type="Control" unique_id=568204668]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_qbeim")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=641683200]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 1080.0
+color = Color(0.4627451, 0.4627451, 0.4627451, 0.7019608)
+
+[node name="Highlight1" type="Sprite2D" parent="." unique_id=112220828]
+visible = false
+position = Vector2(360, 540)
+texture = ExtResource("2_kwt3b")
+
+[node name="Highlight2" type="Sprite2D" parent="." unique_id=129918960]
+visible = false
+position = Vector2(360, 540)
+texture = ExtResource("3_8lojk")
+
+[node name="Control" type="Control" parent="." unique_id=1785315579]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="SpeechBubble" type="Sprite2D" parent="Control" unique_id=528287369]
+position = Vector2(357, 732)
+texture = ExtResource("1_h2ivm")
+
+[node name="Speech" type="RichTextLabel" parent="Control" unique_id=1424999096]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 51.0
+offset_top = 622.0
+offset_right = 615.0
+offset_bottom = 759.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(240, 16)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xssxf")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "This is a speech sample!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Boss" type="Sprite2D" parent="Control" unique_id=1986638676]
+position = Vector2(574, 920.00006)
+scale = Vector2(0.6250001, 0.6289063)
+texture = ExtResource("4_6531g")

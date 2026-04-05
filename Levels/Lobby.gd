@@ -3,8 +3,13 @@ extends Control
 @export var CollectionOfPlayer: Collection
 @onready var lobby: Control = $Lobby
 @onready var edit: Control = $Edit
+@onready var build: Button = $Lobby/Build
+@onready var shop: Button = $Lobby/Shop
 @onready var collection_ui: Control = $Edit/CollectionUi
-@onready var stamina_label: Label = $Lobby/StartGame/Stamina
+@onready var stamina: Label = $Lobby/TopPlayerInfo/Stamina
+@onready var stamina_counter: Label = $Lobby/TopPlayerInfo/StaminaCounter
+@onready var player_money: RichTextLabel = $Lobby/TopPlayerInfo/PlayerMoney
+@onready var back: Button = $Edit/Back
 
 
 @onready var placement_layer: Control = $PlacementLayer # 用于接收点击
@@ -12,19 +17,54 @@ var mouse_ghost: TextureButton = null # 存储预览实例
 
 
 func _ready() -> void:
+	_check_toturial_state()
+	
 		# 从独立脚本获取数据并生成
 	var saved_animals = SaveManager.load_placed_animals()
 	for data in saved_animals:
 		_spawn_saved_animal(data)
 	
-	_update_stamina_ui()
-	
 	GameManager.entered_placement_mode.connect(_on_placement_started)
+	
+	player_money.text = str(GameManager.player_money)
 
+func _process(_delta):
+	# 让预览跟随鼠标
+	if mouse_ghost:
+		# 让预览跟随鼠标
+		mouse_ghost.global_position = get_global_mouse_position()
+		
+		var touch_pos = get_global_mouse_position()
+		var offset = Vector2(-75, -150) 
+		mouse_ghost.global_position = touch_pos + offset
+		
+		# 检测碰撞
+		if is_position_valid():
+			mouse_ghost._placeable()
+		else:
+			if is_over_bin():
+				mouse_ghost._on_bin()
+			else:
+				mouse_ghost._no_placeable()
+	
+	# 实时更新体力UI
+	_update_stamina_ui()
+
+func _check_toturial_state():
+	if GameManager.toturial_state == 0:
+		build.visible = false
+		shop.visible = false
+	if GameManager.toturial_state == 1:
+		build.visible = true
+		shop.visible = false
+	if GameManager.toturial_state == 2:
+		build.visible = true
+		shop.visible = true
 
 func _on_placement_started():
 	# 1. 关闭 CollectionUI
 	collection_ui.hide_menu_smooth()
+	back.visible = false
 	
 	# 2. 生成动物预览
 	mouse_ghost = GameManager.placing_scene.instantiate()
@@ -49,29 +89,6 @@ func _spawn_saved_animal(data: Dictionary):
 		if lobby.visible:
 			new_animal.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-func _process(_delta):
-	# 让预览跟随鼠标
-	if mouse_ghost:
-		# 让预览跟随鼠标
-		mouse_ghost.global_position = get_global_mouse_position()
-		
-		var touch_pos = get_global_mouse_position()
-		var offset = Vector2(-75, -150) 
-		mouse_ghost.global_position = touch_pos + offset
-		
-		# 检测碰撞
-		if is_position_valid():
-			mouse_ghost._placeable()
-		else:
-			mouse_ghost._no_placeable()
-
-func is_position_valid() -> bool:
-	# 获取 mouse_ghost 下面的 Area2D 节点
-	var area = mouse_ghost.get_node("Area2D")
-	# 检查当前是否有重叠的其他 Area
-	var overlaps = area.get_overlapping_areas()
-	# 如果重叠列表不为空，说明撞到其他动物了，返回 false
-	return overlaps.size() == 0
 
 func _input(event):
 	# 监听点击逻辑
@@ -79,12 +96,37 @@ func _input(event):
 	
 	# A. 确定放置 (左键)
 	if event.is_action_released("mouse_left"):
-		_confirm_placement()
+		if is_over_bin():
+			_cancel_placement()
+			return
+		if is_position_valid():
+			_confirm_placement()
+			return
 		
 	# B. 取消放置 (右键)
 	if event.is_action_released("mouse_right"):
 		_cancel_placement()
 
+
+func is_position_valid() -> bool:
+	if mouse_ghost == null: return false
+	
+	var area = mouse_ghost.get_node("Area2D")
+	var overlaps = area.get_overlapping_areas()
+	for overlap in overlaps:
+		if overlap.collision_layer == 32: # 碰到垃圾桶
+			return false # 不合法
+	if overlaps.size() > 0: # 碰到其他动物
+		return false
+	return true
+
+func is_over_bin() -> bool:
+	if mouse_ghost == null: return false
+	var area = mouse_ghost.get_node("Area2D")
+	for overlap in area.get_overlapping_areas():
+		if overlap.collision_layer == 32:
+			return true
+	return false
 
 func _confirm_placement():
 	if is_position_valid():
@@ -105,14 +147,16 @@ func _confirm_placement():
 		SaveManager.save_animals_only()
 		
 		collection_ui.show_menu_smooth()
-	
+		back.visible = true
 
 func _cancel_placement():
 	if mouse_ghost:
-		mouse_ghost.queue_free()
+		mouse_ghost.free()
 		mouse_ghost = null
-	
-	collection_ui.show_menu_smooth()
+		
+		collection_ui.show_menu_smooth()
+		back.visible = true
+
 
 # 辅助函数：统一控制动物的可点击性
 func _set_animals_interactive(active: bool):
@@ -127,16 +171,11 @@ func _set_animals_interactive(active: bool):
 			animal.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _update_stamina_ui():
-	var stamina = GameManager.daily_stamina
-	match stamina:
-		1:
-			stamina_label.text = "Last Voucher: 🎫"
-		0:
-			
-			stamina_label.text = "Run Out of Voucher 🎫\nWatch Ads to Play"
-		_:
-			# 这里的 _ 是默认情况，以防体力超过2点
-			stamina_label.text = "Vouchers Left: " + "🎫".repeat(stamina)
+	stamina.text = str(GameManager.daily_stamina)
+	if GameManager.daily_stamina == 3:
+		stamina_counter.text = "FULL"
+	if GameManager.daily_stamina != 3:
+		stamina_counter.text = TimeUtils.get_countdown_text()
 
 #各个主要功能视图设置
 func _lobby():
@@ -160,7 +199,16 @@ func _on_edit_pressed() -> void:
 
 func _on_start_game_pressed() -> void:
 	if(GameManager.daily_stamina > 0):
-		GameManager.daily_stamina -= 1;
-		get_tree().change_scene_to_file("res://Levels/Board.tscn")
+		if GameManager.toturial_state == 0:
+			get_tree().change_scene_to_file("res://Levels/BoardTutorial.tscn")
+		else:
+			GameManager.daily_stamina -= 1;
+			# 消耗后立即触发恢复计时
+			TimeUtils.start_regen()
+			get_tree().change_scene_to_file("res://Levels/Board.tscn")
 	else:
 		get_tree().change_scene_to_file("res://Levels/Ads.tscn")
+
+
+func _on_shop_pressed() -> void:
+	pass # Replace with function body.

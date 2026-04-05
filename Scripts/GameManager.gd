@@ -4,11 +4,18 @@ extends Node
 signal score_changed(new_score) # 定义信号，用于更新 UI
 signal entered_placement_mode
 
+# 教程状态器 0-无教程； 1-完成游戏； 2-完成布置； 3-完成商城
+var toturial_state: int = 3
+
 var current_score: int = 0
+
 var daily_score: int = 0
 var daily_target_score: int = 5000
 var daily_stamina: int = 3
 var daily_unlock: bool = false
+
+var player_money: int = 0
+
 var current_selection = []
 var game_over: bool = false
 

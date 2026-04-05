@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cc3ew3t3dkyso" path="res://Collection/ColUI.gd" id="1_726ut"]
 [ext_resource type="PackedScene" uid="uid://rp2bj4e53bxu" path="res://Collection/Col_UI_Slot.tscn" id="2_fwg7m"]
 [ext_resource type="FontFile" uid="uid://dxmcymu82uvb0" path="res://Fonts/dpcomic.ttf" id="2_x1gc5"]
+[ext_resource type="Texture2D" uid="uid://cfj1hd4nw05pr" path="res://Texture/Icon/Bin.png" id="4_8ymn4"]
+[ext_resource type="Texture2D" uid="uid://dtr2tuq22tisq" path="res://Texture/Icon/BinOpen.png" id="4_byrr7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikudt"]
 bg_color = Color(5.8377795, 5.8377795, 5.837779, 1)
@@ -30,6 +32,9 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 shadow_color = Color(0, 0, 0, 0.30980393)
 shadow_offset = Vector2(2, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fwg7m"]
+size = Vector2(77.00003, 127)
 
 [node name="CollectionUi" type="Control" unique_id=1094586761]
 layout_mode = 3
@@ -60,9 +65,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 600.0
+offset_left = 573.0
 offset_top = 832.0
-offset_right = 699.2689
+offset_right = 703.0
 offset_bottom = 882.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -77,7 +82,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ikudt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_vcf4i")
 theme_override_styles/hover = SubResource("StyleBoxFlat_r8is3")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_r8is3")
-text = "Show"
+text = "Expand"
 
 [node name="Hide" type="Button" parent="." unique_id=1777927275]
 layout_mode = 1
@@ -86,9 +91,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 600.0
+offset_left = 573.0
 offset_top = 19.0
-offset_right = 699.2689
+offset_right = 703.0
 offset_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -103,7 +108,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ikudt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_vcf4i")
 theme_override_styles/hover = SubResource("StyleBoxFlat_r8is3")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_r8is3")
-text = "Hide"
+text = "Collapse"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1521357394]
 layout_mode = 1
@@ -177,5 +182,26 @@ layout_mode = 2
 [node name="Panel8" parent="ScrollContainerFull/GridContainer" unique_id=1380656054 instance=ExtResource("2_fwg7m")]
 layout_mode = 2
 
+[node name="Bin" type="Area2D" parent="." unique_id=357764649]
+collision_layer = 32
+collision_mask = 256
+
+[node name="BinImgClosed" type="Sprite2D" parent="Bin" unique_id=1755231714]
+position = Vector2(662.25, -121.750015)
+scale = Vector2(0.5097655, 0.5097655)
+texture = ExtResource("4_8ymn4")
+
+[node name="BinImgOpen" type="Sprite2D" parent="Bin" unique_id=1187135950]
+visible = false
+position = Vector2(662.25, -121.750015)
+scale = Vector2(0.5097655, 0.5097655)
+texture = ExtResource("4_byrr7")
+
+[node name="BinCollisionShape2D" type="CollisionShape2D" parent="Bin" unique_id=12841269]
+position = Vector2(662.5, -119.5)
+shape = SubResource("RectangleShape2D_fwg7m")
+
 [connection signal="pressed" from="Show" to="." method="_on_show_pressed"]
 [connection signal="pressed" from="Hide" to="." method="_on_hide_pressed"]
+[connection signal="area_entered" from="Bin" to="." method="_on_bin_area_entered"]
+[connection signal="area_exited" from="Bin" to="." method="_on_bin_area_exited"]

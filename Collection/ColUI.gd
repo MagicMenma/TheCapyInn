@@ -5,11 +5,14 @@ extends Control
 @onready var collection_ui: Control = $"."
 @onready var scroll_container = $ScrollContainer
 @onready var grid_container = $ScrollContainer/GridContainer
-
+@onready var bin: Area2D = $Bin
 
 @onready var frame: Control = $Frame
 @onready var show_btn: Button = $Show
 @onready var hide_btn: Button = $Hide
+
+@onready var bin_img_closed: Sprite2D = $Bin/BinImgClosed
+@onready var bin_img_open: Sprite2D = $Bin/BinImgOpen
 
 # 背景框参数
 var full_height: float = 1080.0 # 全屏高度
@@ -115,7 +118,10 @@ func _mini_container():
 
 # 开始放置动物时 隐藏/显示菜单 动画
 func hide_menu_smooth():
+	bin.visible = true
+	
 	var tween = create_tween().set_parallel(true)
+	
 	if show_btn.visible:
 		min_menu = true
 		show_btn.visible = false
@@ -142,4 +148,15 @@ func show_menu_smooth():
 			.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		
 	await get_tree().create_timer(anim_speed - 0.8).timeout
+	bin.visible = false
 	min_menu = false
+
+
+func _on_bin_area_entered(area: Area2D) -> void:
+	bin_img_open.visible = true
+	bin_img_closed.visible = false
+
+
+func _on_bin_area_exited(area: Area2D) -> void:
+	bin_img_open.visible = false
+	bin_img_closed.visible = true

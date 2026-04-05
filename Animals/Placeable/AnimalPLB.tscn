@@ -58,7 +58,7 @@ texture = ExtResource("2_xv1nb")
 [node name="Area2D" type="Area2D" parent="." unique_id=59860936]
 position = Vector2(92, 75)
 collision_layer = 256
-collision_mask = 272
+collision_mask = 304
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=2112329907]
 visible = false

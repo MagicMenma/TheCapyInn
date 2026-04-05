@@ -23,6 +23,7 @@ boot_splash/minimum_display_time=1500
 
 GameManager="*uid://dt5clm78uckci"
 SaveManager="*uid://b3erxrlqjtsls"
+TimeUtils="*uid://g2ybxprv46rc"
 
 [display]
 
@@ -52,6 +53,7 @@ pointing/android/enable_pan_and_scale_gestures=true
 [layer_names]
 
 2d_physics/layer_5="Terrian"
+2d_physics/layer_6="Bin"
 2d_physics/layer_9="Placeable Animal"
 
 [physics]
