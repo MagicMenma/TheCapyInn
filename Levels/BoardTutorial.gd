@@ -19,13 +19,12 @@ func _ready() -> void:
 func _generate_capybara():
 	var screen_rect = get_viewport().get_visible_rect()
 	var sw = (screen_rect.size.x - 720) / 2 # 宽屏幕修正值
-	
+	var sh = (screen_rect.size.y - 1080) / 2 # 宽高幕修正值
 	var default_capybara = [
-		{ "type": "Capybara", "pos_x": sw + 227, "pos_y": 385 },
-		{ "type": "Capybara", "pos_x": sw + 482, "pos_y": 524 },
-		{ "type": "Capybara", "pos_x": sw + 435, "pos_y": 241 }
+		{ "type": "Capybara", "pos_x": sw + 227, "pos_y": sh + 385 },
+		{ "type": "Capybara", "pos_x": sw + 482, "pos_y": sh + 524 },
+		{ "type": "Capybara", "pos_x": sw + 435, "pos_y": sh + 241 }
 	]
-
 	for data in default_capybara:
 		# 1. 实例化
 		var new_capy = CAPYBARA_SCENE.instantiate()
