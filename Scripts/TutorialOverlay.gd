@@ -28,7 +28,7 @@ var tutorial_2: Array[String] = [
 	]
 
 var tutorial_3: Array[String] = [
-	"These revenues will help us rebuild the hotel.",
+	"These [shake rate=20.0 level=10]$$$[/shake] will help us rebuild the hotel.",
 	"Today's business hours have come to an end. Let's return to the lobby."
 	]
 
@@ -118,7 +118,7 @@ func _on_tutorial_2_finished():
 	run_tutorial_sequence(tutorial_3, _on_tutorial_3_finished)
 
 func _on_tutorial_3_finished():
-	GameManager.toturial_state = 1
+	GameManager.toturial_state = 2
 	GameManager.player_money = 100
 	GameManager.current_score = 0
 	get_tree().call_deferred("change_scene_to_file", "res://Levels/Lobby.tscn")
